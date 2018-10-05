@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+  ]
+}
