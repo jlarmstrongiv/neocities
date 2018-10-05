@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Briefings extends React.Component {
+export class Briefings extends React.Component {
   render() {
     return (
       <div>

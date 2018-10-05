@@ -1,19 +1,13 @@
 import React from 'react';
-import { compose, } from 'redux';
-import { connect, } from 'react-redux';
-import {
-  Route,
-  Redirect,
-  withRouter,
-} from 'react-router-dom';
+import { Route, Redirect, } from 'react-router-dom';
 
 const ProtectedRoute = ({ component: Component, token, ...rest }) => (
   <Route
     {...rest}
-    render={props => {
+    render={(props) => {
       if (!token) return (
         <Redirect to={{
-          pathname: '/login',
+          pathname: '/',
           state: { from: props.location, },
         }} />
       );
@@ -21,16 +15,6 @@ const ProtectedRoute = ({ component: Component, token, ...rest }) => (
     }}
   />
 );
-
-const mapStateToProps = (state, ownProps) => {
-  return { token: state.auth.token, };
-};
-
-export default compose(
-  withRouter,
-  connect(mapStateToProps)
-)(ProtectedRoute);
-
 
 // read the following to redirect after signin
 // https://tylermcginnis.com/react-router-protected-routes-authentication/
@@ -47,3 +31,5 @@ export default compose(
 //  path="/feature"
 //  token={token}
 //  component={Feature} />
+
+export default ProtectedRoute;

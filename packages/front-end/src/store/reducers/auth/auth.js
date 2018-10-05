@@ -21,10 +21,14 @@ const logout = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.AUTH_INIT: return init(action, state);
-    case actionTypes.AUTH_LOGIN: return login(action, state);
-    case actionTypes.AUTH_LOGOUT: return logout(action, state);
-    default: return state;
+    case actionTypes.AUTH_INIT:
+      return init(action, state);
+    case actionTypes.AUTH_LOGIN:
+      return login(action, state);
+    case actionTypes.AUTH_LOGOUT:
+      return logout(action, state);
+    default:
+      return state;
   }
 };
 export default reducer;
