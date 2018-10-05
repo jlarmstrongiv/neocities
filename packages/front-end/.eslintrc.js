@@ -71,6 +71,7 @@ module.exports = {
     ],
     "react/jsx-first-prop-new-line": [1, "multiline-multiprop"],
     "react/jsx-space-before-closing": [1, "always"],
+    "react/no-children-prop": 0,
     "object-curly-spacing": [1, "always"],
     "comma-dangle": ["warn", "always"],
     "object-curly-newline": [
