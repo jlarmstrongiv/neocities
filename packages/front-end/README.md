@@ -10,3 +10,9 @@ Use `window.localStorage` to save the token to persist for the entirety of the l
 
 ## Moment.js
 Set the time to calculate from via the [from prop](https://github.com/headzoo/react-moment#from).  Thus, you can [disable the interval](https://github.com/headzoo/react-moment#interval).
+
+## Old References
+updateComponent
+withAuth
+ProtectedRoute
+StoreFactory
