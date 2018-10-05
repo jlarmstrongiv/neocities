@@ -7,7 +7,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        Hello World
         <Pages />
       </div>
     );

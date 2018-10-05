@@ -1,8 +1,6 @@
 import React from 'react';
-import { compose, } from 'redux';
 import { connect, } from 'react-redux';
 import {
-  withRouter,
   Switch,
   Route,
 } from 'react-router-dom';
@@ -49,15 +47,4 @@ class Pages extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return { auth: state.auth, };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {};
-};
-
-export default compose(
-  withRouter,
-  connect(mapStateToProps, mapDispatchToProps)
-)(Pages);
+export default Pages;

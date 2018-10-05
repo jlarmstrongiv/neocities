@@ -1,10 +1,8 @@
 import React from 'react';
-import { compose, } from 'redux';
 import { connect, } from 'react-redux';
 import {
   Route,
   Redirect,
-  withRouter,
 } from 'react-router-dom';
 
 const ProtectedRoute = ({ component: Component, token, ...rest }) => (
@@ -26,9 +24,11 @@ const mapStateToProps = (state, ownProps) => {
   return { token: state.auth.token, };
 };
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps)
+export default connect(
+  mapStateToProps,
+  null,
+  null,
+  { pure: false, }
 )(ProtectedRoute);
 
 

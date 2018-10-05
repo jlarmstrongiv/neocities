@@ -2,7 +2,7 @@ import * as actionTypes from 'store/actions/actionTypes';
 import { updateObject, } from 'utilities';
 
 const initialState = {
-  token: null,
+  token: '',
   userId: null,
   authRedirectPath: '/',
 };

@@ -4,7 +4,7 @@ import NavItem from 'components/NavItem/NavItem';
 const Nav = () => {
   const pages = [
     {
-      path: '/index',
+      path: '/',
       iconPath: 'path/to/icon',
       title: 'Home',
     },

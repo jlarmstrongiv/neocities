@@ -1,7 +1,9 @@
 import React from 'react';
+import IsAuth from 'hoc/IsAuth/IsAuth';
 
-export class Login extends React.Component {
+class Login extends React.Component {
   render() {
+    const sample = <div>why</div>;
     return (
       <div>
         Login
