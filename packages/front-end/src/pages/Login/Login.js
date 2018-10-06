@@ -6,7 +6,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <IsAuth render={(isAuth) => {
+        <IsAuth render={({ isAuth, }) => {
           if (isAuth) return (
             <Redirect to='/dashboard' />
           );

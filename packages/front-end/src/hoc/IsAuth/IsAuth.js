@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect, } from 'react-redux';
-import {
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { Route, } from 'react-router-dom';
 
 const IsAuth = ({ render, token, ...rest }) => (
   <Route
@@ -12,7 +9,11 @@ const IsAuth = ({ render, token, ...rest }) => (
       const isAuth = token ? true : false;
       return (
         <React.Fragment>
-          {render(isAuth)}
+          {render({
+            isAuth,
+            token,
+            props,
+          })}
         </React.Fragment>
       );
     }}
