@@ -1,12 +1,17 @@
 import React from 'react';
 import IsAuth from 'hoc/IsAuth/IsAuth';
+import { Redirect, } from 'react-router-dom';
 
 class Login extends React.Component {
   render() {
-    const sample = <div>why</div>;
     return (
       <div>
-        <IsAuth render={(isAuth) => <div>isAuth</div>} />
+        <IsAuth render={(isAuth) => {
+          if (isAuth) return (
+            <Redirect to='/dashboard' />
+          );
+          return <div>Login</div>;
+        }} />
       </div>
     );
   }
