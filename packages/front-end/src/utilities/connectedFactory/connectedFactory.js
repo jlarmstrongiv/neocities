@@ -7,6 +7,7 @@ import { connectRouter, routerMiddleware, } from 'connected-react-router';
 import { createBrowserHistory, createMemoryHistory, } from 'history';
 import rootReducer from 'store/reducers/rootReducer';
 import middlewares from 'store/reducers/middlewares';
+// import createSagaMiddleware from 'redux-saga';
 
 // A nice helper to tell us if we're on the server
 export const isServer = !(
@@ -32,8 +33,10 @@ export const connectedFactory = (url = '/', initialState = {}) => {
     }
   }
 
+  // const sagaMiddleware = createSagaMiddleware();
+
   const composedEnhancers = compose(
-    applyMiddleware(routerMiddleware(history), ...middlewares),
+    applyMiddleware(routerMiddleware(history), /* sagaMiddleware, */...middlewares),
     ...enhancers
   );
 
@@ -55,5 +58,6 @@ export const connectedFactory = (url = '/', initialState = {}) => {
   return {
     store,
     history,
+    // sagaMiddleware,
   };
 };

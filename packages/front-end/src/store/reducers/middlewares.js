@@ -1,5 +1,5 @@
-// import reduxThunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 
-const middlewares = [];
+const middlewares = [thunk,];
 
 export default middlewares;

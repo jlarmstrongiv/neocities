@@ -1,4 +1,9 @@
 import * as actionTypes from 'store/actions/actionTypes';
+import * as localStorageTypes from 'store/actions/localStorageTypes';
+export const localStorageCheck = () => {
+  return;
+};
+
 
 export const init = () => {
   return {

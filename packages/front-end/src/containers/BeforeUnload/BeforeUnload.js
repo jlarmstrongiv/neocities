@@ -10,8 +10,8 @@ class BeforeUnload extends Component {
     window.addEventListener('unload', this.props.onClearSession);
   }
   componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.unload);
-
+    window.removeEventListener('beforeunload', this.props.onClearSession);
+    window.removeEventListener('unload', this.props.onClearSession);
   }
   render() {
     return <React.Fragment />;
@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {onClearCache: () => dispatch(actions.clearCache()),};
+  return { onClearCache: () => dispatch(actions.clearSession()), };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BeforeUnload);

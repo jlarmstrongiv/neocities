@@ -1,4 +1,2 @@
 export const TOKEN = 'TOKEN';
-
-export const MESSAGES = 'MESSAGES';
-export const RESOURCES = 'RESOURCES';
+export const USER_ID = 'USER_ID';
