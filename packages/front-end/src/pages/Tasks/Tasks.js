@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class Tasks extends React.Component {
+class Tasks extends React.Component {
   render() {
     return (
       <div>

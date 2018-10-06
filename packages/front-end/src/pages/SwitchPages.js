@@ -4,14 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import ProtectedRoute from 'hoc/ProtectedRouted/ProtectedRoute';
-// Pages
-import Index from 'pages/Index/Index';
-import Login from 'pages/Login/Login';
-import Dashboard from 'pages/Dashboard/Dashboard';
-import Chat from 'pages/Chat/Chat';
-import Resources from 'pages/Resources/Resources';
-import Tasks from 'pages/Tasks/Tasks';
-import Briefings from 'pages/Briefings/Briefings';
+import * as async from 'pages/AsyncPages';
 
 class Pages extends React.Component {
   render() {
@@ -20,26 +13,28 @@ class Pages extends React.Component {
         <Switch>
           <ProtectedRoute
             path="/dashboard"
-            component={Dashboard} />
+            component={async.Dashboard} />
           <ProtectedRoute
             path="/chat"
-            component={Chat} />
+            component={async.Chat} />
           <ProtectedRoute
             path="/resources"
-            component={Resources} />
+            component={async.Resources} />
           <ProtectedRoute
             path="/tasks"
-            component={Tasks} />
+            component={async.Tasks} />
           <ProtectedRoute
             path="/Briefings"
-            component={Briefings} />
+            component={async.Briefings} />
           <Route
             path='/'
             exact
-            render={props => <Index {...props} />} />
+            component={async.Index} />
           <Route
             path='/login'
-            render={props => <Login {...props} />} />
+            component={async.Login} />
+          <Route
+            component={async.NotFound} />
         </Switch>
       </React.Fragment>
     );

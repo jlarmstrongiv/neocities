@@ -1,5 +1,5 @@
 import React from 'react';
-import Pages from 'pages/Pages';
+import SwitchPages from 'pages/SwitchPages';
 import Nav from 'components/Nav/Nav';
 
 class App extends React.Component {
@@ -7,7 +7,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav />
-        <Pages />
+        <SwitchPages />
       </div>
     );
   }
