@@ -59,7 +59,7 @@ module.exports = {
       1,
       {
         varsIgnorePattern: "res|next|^err",
-        argsIgnorePattern: "state|action|ownProps|dispatch|req|res|next|err"
+        argsIgnorePattern: "state|action|ownProps|dispatch|req|res|next|err|dispatch|getState"
       }
     ],
     "react/jsx-max-props-per-line": [

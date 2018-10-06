@@ -7,26 +7,26 @@ const initialState = {
   authRedirectPath: '/',
 };
 
-const init = (state, action) => {
-  return updateObject(...state, { payload: action.payload, });
-};
-
 const login = (state, action) => {
-  return updateObject(...state, { payload: action.payload, });
+  return updateObject(state, {
+    token: action.payload.token,
+    userId: action.payload.userId,
+  });
 };
 
-const logout = (state, action) => {
-  return updateObject(...state, { payload: action.payload, });
+const reset = (state, action) => {
+  return updateObject(state, {
+    token: '',
+    userId: '',
+  });
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.AUTH_INIT:
-      return init(action, state);
     case actionTypes.AUTH_LOGIN:
-      return login(action, state);
-    case actionTypes.AUTH_LOGOUT:
-      return logout(action, state);
+      return login(state, action);
+    case actionTypes.AUTH_RESET:
+      return reset(state, action);
     default:
       return state;
   }

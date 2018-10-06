@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect, } from 'react-redux';
 import IsAuth from 'hoc/IsAuth/IsAuth';
 import { Redirect, } from 'react-router-dom';
-
+import * as actions from 'store/actions';
 class Login extends React.Component {
   render() {
     return (
@@ -17,4 +18,13 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state, ownProps) => {
+  return { auth: state.auth, };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return { onLogin: (auth) => dispatch(actions.login(auth)), };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

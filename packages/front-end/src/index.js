@@ -7,7 +7,7 @@ import * as serviceWorker from 'serviceWorker';
 import { connectedFactory, } from 'utilities';
 import App from 'App';
 
-const { store, history, sagaMiddleware, } = connectedFactory();
+const { store, history, } = connectedFactory();
 
 export const root = (
   <Provider store={store}>

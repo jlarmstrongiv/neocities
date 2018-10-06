@@ -1,8 +1,11 @@
 export const AUTH_INIT = 'AUTH_INIT';
 export const AUTH_LOGIN = 'AUTH_LOGIN';
-export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const AUTH_RESET = 'AUTH_RESET';
 
 export const SESSION_CLEAR = 'SESSION_CLEAR';
 export const SESSION_CHECK = 'SESSION_CHECK';
 export const LOCALSTORAGE_CLEAR = 'LOCALSTORAGE_CLEAR';
 export const LOCALSTORAGE_CHECK = 'LOCALSTORAGE_CHECK';
+
+// TEMP
+export const REDUCE = 'REDUCE';
