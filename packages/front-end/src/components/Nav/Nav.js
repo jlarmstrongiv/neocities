@@ -5,8 +5,14 @@ const Nav = () => {
   const pages = [
     {
       path: '/',
+      exact: true,
       iconPath: 'path/to/icon',
       title: 'Home',
+    },
+    {
+      path: '/login',
+      iconPath: 'path/to/icon',
+      title: 'Login',
     },
     {
       path: '/dashboard',
@@ -37,10 +43,11 @@ const Nav = () => {
   return (
     <div>
       NAV
-      {pages.map(({ path, iconPath, title, }) => (
+      {pages.map(({ path, iconPath, title, exact = false, }) => (
         <NavItem
           key={path}
           path={path}
+          exact={exact}
           iconPath={iconPath}
           title={title}
         />

@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect, } from 'react-redux';
-import {
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { Route, } from 'react-router-dom';
 
-const IsAuth = ({ render, token, ...rest }) => (
+const IsAuth = ({ component: Component, token, ...rest }) => (
   <Route
     {...rest}
     render={props => {
-      const isAuth = token ? true : false;
+      if (!token) return (
+        <Component {...props} />
+      );
       return (
-        <React.Fragment>
-          {render(isAuth)}
-        </React.Fragment>
+        <Component
+          {...props}
+          token={token}
+        />
       );
     }}
   />

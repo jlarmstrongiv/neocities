@@ -6,7 +6,7 @@ class Login extends React.Component {
     const sample = <div>why</div>;
     return (
       <div>
-        Login
+        <IsAuth render={(isAuth) => <div>isAuth</div>} />
       </div>
     );
   }
