@@ -16,3 +16,7 @@ updateComponent
 withAuth
 ProtectedRoute
 StoreFactory
+
+## Other
+Change NavItem to follow render prop pattern of IsAuth
+Axios props https://stackoverflow.com/questions/39153080/how-can-i-get-the-status-code-from-an-http-error-in-axios

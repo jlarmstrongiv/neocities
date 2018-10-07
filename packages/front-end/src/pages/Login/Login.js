@@ -3,6 +3,7 @@ import { connect, } from 'react-redux';
 import IsAuth from 'hoc/IsAuth/IsAuth';
 import { Redirect, } from 'react-router-dom';
 import * as actions from 'store/actions';
+
 class Login extends React.Component {
   render() {
     return (
@@ -23,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return { onLogin: (auth) => dispatch(actions.login(auth)), };
+  return { onauthCreate: (auth) => dispatch(actions.authCreate(auth)), };
 };
 
 

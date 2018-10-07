@@ -1,3 +1,5 @@
+import reduceReducers from 'reduce-reducers';
+import itemsReducerFor from 'store/reducers/itemsReducerFor/itemsReducerFor';
 import * as actionTypes from 'store/actions/actionTypes';
 import { updateObject, } from 'utilities';
 
@@ -15,4 +17,8 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
-export default reducer;
+
+export default reduceReducers(
+  reducer,
+  itemsReducerFor(actionTypes.PREFIXES_BRIEFINGS)
+);
