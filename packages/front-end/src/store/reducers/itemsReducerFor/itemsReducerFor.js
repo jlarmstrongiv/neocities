@@ -39,14 +39,11 @@ const itemsRemove = (state, action) => {
   };
 };
 const itemsUpdate = (state, action) => {
-  const itemIndex = state.itemOrder.findIndex(item => item === action.payload.itemId);
-  const itemOrder = immutableSplice(state.itemOrder, itemIndex, 1);
-  const { [action.payload.itemId]: removedItem, ...items } = this.state.items;
   return {
     ...state,
     items: {
       ...state.items,
-      ...action.payload.item,
+      [action.payload.itemId]: action.payload.item,
     },
   };
 };
@@ -81,6 +78,8 @@ const itemsReducerFor = prefix => {
         return itemsAdd(state, action);
       case `${prefix}_${actionTypes.ITEMS_REMOVE}`:
         return itemsRemove(state, action);
+      case `${prefix}_${actionTypes.ITEMS_UPDATE}`:
+        return itemsUpdate(state, action);
       case `${prefix}_${actionTypes.ITEMS_IS_LOADING}`:
         return itemsIsLoading(state, action);
       case `${prefix}_${actionTypes.ITEMS_IS_ERROR}`:

@@ -25,7 +25,7 @@ export const authInit = () => {
 export const authCreate = (auth) => {
   return async (dispatch, getState) => {
     try {
-      const response = axios.get(`/initparticipant/${auth.participantId}`); // /initparticipant/${participantId}
+      const response = await axios.get(`/initparticipant/${auth.participantId}/`); // /initparticipant/${participantId}
       console.log(response.data.sessionKey);
       console.log(response.data.sessionKey);
       dispatch({
