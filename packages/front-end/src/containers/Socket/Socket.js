@@ -1,26 +1,27 @@
 import React from 'react';
 import { connect, } from 'react-redux';
 import * as actions from 'store/actions';
+import { baseUrl, } from 'axios/axios';
 
 class Auth extends React.Component {
   componentDidMount() {
-    // this.props.onInit();
+    const websocket = new WebSocket(`'wss://${baseUrl}/ws/api/dynamic_data/${this.props.token}/`);
   }
+
   render() {
-    return (
-      <React.Fragment>
-        {this.props.children}
-      </React.Fragment>
-    );
+    return <React.Fragment>{this.props.children}</React.Fragment>;
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { auth: state.auth, };
+  return { token: state.auth.token, };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return { onInit: () => dispatch(actions.authInit()), };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Auth);

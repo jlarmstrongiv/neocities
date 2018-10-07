@@ -18,12 +18,12 @@ const itemsDestroy = (state, action) => {
   };
 };
 const itemsAdd = (state, action) => {
-  const itemOrder = immutableSplice(state.itemOrder, action.payload.itemIndex, 0, [action.payload.itemIndex,]);
+  const itemOrder = immutableSplice(state.itemOrder, action.payload.itemIndex, 0, [action.payload.item,]);
   return {
     ...state,
     items: {
       ...state.items,
-      ...action.payload.items,
+      [action.payload.itemId]: action.payload.item,
     },
     itemOrder: itemOrder,
   };
@@ -36,6 +36,18 @@ const itemsRemove = (state, action) => {
     ...state,
     items,
     itemOrder,
+  };
+};
+const itemsUpdate = (state, action) => {
+  const itemIndex = state.itemOrder.findIndex(item => item === action.payload.itemId);
+  const itemOrder = immutableSplice(state.itemOrder, itemIndex, 1);
+  const { [action.payload.itemId]: removedItem, ...items } = this.state.items;
+  return {
+    ...state,
+    items: {
+      ...state.items,
+      ...action.payload.item,
+    },
   };
 };
 const itemsIsLoading = (state, action) => {

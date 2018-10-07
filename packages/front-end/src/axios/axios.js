@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({ baseURL: 'https://neocities.herokuapp.com/api/', });
-
+export const baseUrl = 'neocities.herokuapp.com';
+const axiosInstance = axios.create({ baseURL: `https://${baseUrl}/api/`, });
 export default axiosInstance;

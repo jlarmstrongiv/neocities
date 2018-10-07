@@ -7,9 +7,14 @@ export const authInit = () => {
     try {
       const token = localStorage.getItem(localStorageTypes.TOKEN);
       const userId = localStorage.getItem(localStorageTypes.USER_ID);
+      const participantId = localStorage.getItem(localStorageTypes.PARTICIPANT_ID);
+      if (!participantId) {
+        return dispatch(authDestroy());
+      }
       dispatch(authCreate({
         token,
         userId,
+        participantId,
       }));
     } catch (error) {
       dispatch(authDestroy());
@@ -20,18 +25,19 @@ export const authInit = () => {
 export const authCreate = (auth) => {
   return async (dispatch, getState) => {
     try {
-      const response = axios.post('/login', auth);
-      if (response.data) {
-        dispatch({
-          type: actionTypes.AUTH_CREATE,
-          payload: {
-            token: auth.token,
-            userId: auth.userId,
-          },
-        });
-      } else {
-        dispatch(authDestroy());
-      }
+      const response = axios.get(`/initparticipant/${auth.participantId}`); // /initparticipant/${participantId}
+      console.log(response.data.sessionKey);
+      console.log(response.data.sessionKey);
+      dispatch({
+        type: actionTypes.AUTH_CREATE,
+        payload: {
+          token: response.data.sessionKey,
+          userId: response.data.userID,
+        },
+      });
+      localStorage.setItem(localStorageTypes.TOKEN);
+      localStorage.setItem(localStorageTypes.USER_ID);
+      localStorage.setItem(localStorageTypes.PARTICIPANT_ID);
     } catch (error) {
       dispatch(authDestroy());
     }

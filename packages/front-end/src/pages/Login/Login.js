@@ -5,6 +5,19 @@ import { Redirect, } from 'react-router-dom';
 import * as actions from 'store/actions';
 
 class Login extends React.Component {
+  state = { auth: { participantId: '', }, }
+  componentDidMount() {
+    this.props.onAuthInit();
+  }
+  onLoginChange = event => {
+    this.setState({ auth: {
+      ...this.state.auth,
+      participantId: event.target.value,
+    }, });
+  }
+  onLoginSubmit = event => {
+    this.props.onAuthCreate(this.state.auth);
+  }
   render() {
     return (
       <div>
@@ -12,7 +25,14 @@ class Login extends React.Component {
           if (isAuth) return (
             <Redirect to='/dashboard' />
           );
-          return <div>Login</div>;
+          return (
+            <React.Fragment>
+              <input
+                value={this.state.participantId}
+                onChange={this.onLoginChange}></input>
+              <button onClick={this.onLoginSubmit}>Login</button>
+            </React.Fragment>
+          );
         }} />
       </div>
     );
@@ -24,7 +44,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return { onauthCreate: (auth) => dispatch(actions.authCreate(auth)), };
+  return {
+    onAuthCreate: (auth) => dispatch(actions.authCreate(auth)),
+    onAuthInit: () => dispatch(actions.authInit()),
+  };
 };
 
 

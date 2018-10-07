@@ -15,6 +15,7 @@ export const ITEMS_CREATE = 'ITEMS_CREATE';
 export const ITEMS_DESTROY = 'ITEMS_DESTROY';
 export const ITEMS_ADD = 'ITEMS_ADD';
 export const ITEMS_REMOVE = 'ITEMS_REMOVE';
+export const ITEMS_UPDATE = 'ITEMS_UPDATE';
 export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING';
 export const ITEMS_IS_ERROR = 'ITEMS_IS_ERROR';
 
