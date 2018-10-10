@@ -30,13 +30,13 @@ export default ({ dispatch, getState, }) => next => action => {
           },
         },
       });
-      return next();
+      break;
     case actionTypes.SIMULATED_TIMER_DESTROY:
       dispatch({
         type: STOP_TIMER,
         payload: { name: actionTypes.SIMULATED_TIMER_NAME, },
       });
-      return next();
+      break;
     default:
       return next(action);
   }

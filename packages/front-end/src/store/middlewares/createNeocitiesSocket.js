@@ -13,17 +13,17 @@ const createNeocitiesSocket = (/* url */) => {
         rws.onmessage = event => {
           dispatch(JSON.parse(event.data));
         };
-        return next();
+        break;
       case actionTypes.SOCKET_DESTORY:
         rws = undefined;
-        return next();
+        break;
       case actionTypes.SOCKET_SEND:
         if (!rws || rws.readyState >= 2) {
           // the ReconnectingWebSocket has a message queue
           // throw new Error('WebSocket Closing or Closed');
         }
         rws.send(JSON.stringify(action));
-        return next();
+        break;
       default:
         // if the action is not relevant, send it to the next middleware
         return next(action);
