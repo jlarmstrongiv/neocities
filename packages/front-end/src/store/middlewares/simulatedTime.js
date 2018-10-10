@@ -1,0 +1,43 @@
+import * as actionTypes from 'store/actions/actionTypes';
+import { START_TIMER, STOP_TIMER, } from 'redux-timer';
+
+export default ({ dispatch, getState, }) => next => action => {
+  switch (action.type) {
+    case actionTypes.SIMULATED_TIMER_CREATE:
+      dispatch({
+        type: actionTypes.SIMULATED_TIMER_SET,
+        payload: {
+          timeStart: action.payload.timeStart,
+          simulatedTimeSpeed: action.payload.simulatedTimeSpeed,
+        },
+      });
+      dispatch({
+        type: START_TIMER,
+        payload: {
+          name: actionTypes.SIMULATED_TIMER_NAME,
+          interval: 60000,
+          action: () => {
+            /* eslint-disable no-case-declarations */
+            const { time, } = getState();
+            const currentTime = Date.now() / 1000 | 0;
+            const timeOffset = currentTime - time.timeStart;
+            const simulatedTime = time.timeStart + (timeOffset * time.simulatedTimeSpeed);
+            /* eslint-enable no-case-declarations */
+            dispatch({
+              type: actionTypes.SIMULATED_TIME_SET,
+              payload: { simulatedTime, },
+            });
+          },
+        },
+      });
+      return next();
+    case actionTypes.SIMULATED_TIMER_DESTROY:
+      dispatch({
+        type: STOP_TIMER,
+        payload: { name: actionTypes.SIMULATED_TIMER_NAME, },
+      });
+      return next();
+    default:
+      return next(action);
+  }
+};

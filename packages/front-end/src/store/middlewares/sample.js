@@ -1,5 +1,13 @@
+// Sockets
+// https://stackoverflow.com/questions/51831824/where-to-store-class-instance-for-reusability-in-redux
+// https://gist.github.com/markerikson/3df1cf5abbac57820a20059287b4be58
+// https://github.com/pladaria/reconnecting-websocket
 // https://github.com/StephenGrider/AdvancedReduxCode/blob/master/middleware/src/middlewares/async.js
 // https://github.com/StephenGrider/AdvancedReduxCode/blob/master/middleware/src/middlewares/stateValidator.js
+// https://blog.heroku.com/in_deep_with_django_channels_the_future_of_real_time_apps_in_django#where-we-re-going
+// Timer
+// https://gist.github.com/markerikson/ca96a82d6fdb29388aca4052a9455431
+// https://github.com/elselabs/redux-timer
 
 export default ({ dispatch, getState, }) => next => action => {
   // Check to see if the action
@@ -23,8 +31,6 @@ export default ({ dispatch, getState, }) => next => action => {
   });
 };
 
-// https://stackoverflow.com/questions/51831824/where-to-store-class-instance-for-reusability-in-redux
-// https://gist.github.com/markerikson/3df1cf5abbac57820a20059287b4be58
 const createMySocketMiddleware = (url) => {
   let socket;
 

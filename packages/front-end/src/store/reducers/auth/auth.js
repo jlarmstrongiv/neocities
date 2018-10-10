@@ -4,8 +4,6 @@ const initialState = {
   token: '',
   userId: '',
   participantId: '',
-  timeStart: '',
-  simulatedTimeSpeed: '',
   authRedirectPath: '/',
 };
 
@@ -16,8 +14,6 @@ const authCreate = (state, action) => {
     token: payload.token,
     userId: payload.userId,
     participantId: payload.participantId,
-    timeStart: payload.timeStart,
-    simulatedTimeSpeed: payload.simulatedTimeSpeed,
   };
 };
 
@@ -27,8 +23,6 @@ const authDestroy = (state, action) => {
     token: '',
     userId: '',
     participantId: '',
-    timeStart: '',
-    simulatedTimeSpeed: '',
   };
 };
 
