@@ -1,17 +1,18 @@
 import React, { Component, } from 'react';
 import { connect, } from 'react-redux';
+import * as actions from 'store/actions';
 
 class BeforeUnload extends Component {
   shouldComponentUpdate() {
     return false;
   }
   componentDidMount() {
-    window.addEventListener('beforeunload', this.props.onClearSession);
-    window.addEventListener('unload', this.props.onClearSession);
+    window.addEventListener('beforeunload', this.props.onAuthDestroy);
+    window.addEventListener('unload', this.props.onAuthDestroy);
   }
   componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.props.onClearSession);
-    window.removeEventListener('unload', this.props.onClearSession);
+    window.removeEventListener('beforeunload', this.props.onAuthDestroy);
+    window.removeEventListener('unload', this.props.onAuthDestroy);
   }
   render() {
     return <React.Fragment />;
@@ -23,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return { onClearCache: () => dispatch(actions.clearSession()), };
+  return { onAuthDestroy: () => dispatch(actions.authDestroy()), };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BeforeUnload);

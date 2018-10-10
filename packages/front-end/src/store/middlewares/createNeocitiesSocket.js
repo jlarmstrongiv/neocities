@@ -1,4 +1,4 @@
-import ReconnectingWebSocket from 'reconnecting-websocket';
+import ReconnectingWebSocket from 'ReconnectingWebSocket';
 import { baseUrl, } from 'axios/axios';
 import * as actionTypes from 'store/actions/actionTypes';
 

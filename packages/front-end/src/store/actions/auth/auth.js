@@ -1,7 +1,6 @@
 import axios from 'axios/axios';
 import * as actionTypes from 'store/actions/actionTypes';
 import * as localStorageTypes from 'store/actions/localStorageTypes';
-import { SOCKET_CREATE, } from 'store/actions/actionTypes';
 
 export const authInit = () => {
   return async (dispatch, getState) => {
@@ -27,29 +26,30 @@ export const authInit = () => {
 export const authCreate = (auth) => {
   return async (dispatch, getState) => {
     try {
-      const { dataTODO, } = await axios.get(`/initparticipant/${auth.participantId}/`); // /initparticipant/${participantId}
+      // const { data, } = await axios.get(`/initparticipant/${auth.participantId}/`); // /initparticipant/${participantId}
       const data = {
         'sessionKey': 'sessionKey',
         'userID': 1,
         'participantId': 'participantID',
       };
+      const auth = {
+        token: data.sessionKey,
+        userId: data.userID,
+        participantId: data.participantId,
+      };
       dispatch({
         type: actionTypes.AUTH_CREATE,
-        payload: {
-          token: data.sessionKey,
-          userId: data.userID,
-          participantId: data.participantId,
-        },
+        payload: { auth, },
       });
 
-      dispatch({ type: actionTypes.SOCKET_CREATE, });
+      dispatch({
+        type: actionTypes.SOCKET_CREATE,
+        payload: { auth , },
+      });
 
-      localStorage.setItem(localStorageTypes.TOKEN);
-      localStorage.setItem(localStorageTypes.USER_ID);
-      localStorage.setItem(localStorageTypes.PARTICIPANT_ID);
-      localStorage.setItem(localStorageTypes.TIME_START);
-      localStorage.setItem(localStorageTypes.SIMULATED_TIME_SPEED);
-
+      localStorage.setItem(localStorageTypes.TOKEN, auth.token);
+      localStorage.setItem(localStorageTypes.USER_ID, auth.userId);
+      localStorage.setItem(localStorageTypes.PARTICIPANT_ID, auth.participantId);
     } catch (error) {
       dispatch(authDestroy());
       console.error(error);

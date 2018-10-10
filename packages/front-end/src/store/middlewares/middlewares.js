@@ -6,8 +6,8 @@ import simulatedTime from 'store/middlewares/simulatedTime';
 const middlewares = [
   thunk,
   timerMiddleware,
-  simulatedTime,
   createNeocitiesSocket(),
+  simulatedTime,
 ];
 
 export default middlewares;

@@ -1028,6 +1028,10 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.1.tgz#5c85d662f76fa1d34575766c5dcd6615abcd30d8"
   integrity sha512-FZdkNBDqBRHKQ2MEbSC17xnPFOhZxeJ2YGSfr2BKf3sujG49Qe3bB+rGCwQfIaA7WHnGeGkSijX4FuBCdrzW/g==
 
+"ReconnectingWebSocket@https://github.com/joewalnes/reconnecting-websocket":
+  version "1.0.1"
+  resolved "https://github.com/joewalnes/reconnecting-websocket#fd7c819bb15eeee3452c17e317c0a3664c442965"
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
@@ -8332,11 +8336,6 @@ realpath-native@^1.0.0:
   integrity sha512-+S3zTvVt9yTntFrBpm7TQmQ3tzpCrnA1a/y+3cUHAc9ZR6aIjG0WNLR+Rj79QpJktY+VeW/TQtFlQ1bzsehI8g==
   dependencies:
     util.promisify "^1.0.0"
-
-reconnecting-websocket@^4.1.5:
-  version "4.1.5"
-  resolved "https://registry.yarnpkg.com/reconnecting-websocket/-/reconnecting-websocket-4.1.5.tgz#c74baed55de0a04bc256935f62d2e4ed650d5a6f"
-  integrity sha512-NZvNhK+N2Z/hTCJb/xDDfK7zfypoDBKajLwMe7vDzQfRIUl5vyGWYATFuMcoEc393LipmU9rzVMczU1zybhW4w==
 
 recursive-readdir@2.2.2:
   version "2.2.2"

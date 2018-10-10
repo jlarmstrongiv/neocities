@@ -11,6 +11,7 @@ const IsAuth = ({ render, token, ...rest }) => (
         <React.Fragment>
           {render({
             isAuth,
+            IsAuth: isAuth,
             token,
             props,
           })}
