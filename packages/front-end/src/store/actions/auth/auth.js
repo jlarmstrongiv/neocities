@@ -1,6 +1,7 @@
 import axios from 'axios/axios';
 import * as actionTypes from 'store/actions/actionTypes';
 import * as localStorageTypes from 'store/actions/localStorageTypes';
+import { SOCKET_CREATE, } from 'store/actions/actionTypes';
 
 export const authInit = () => {
   return async (dispatch, getState) => {
@@ -8,6 +9,9 @@ export const authInit = () => {
       const token = localStorage.getItem(localStorageTypes.TOKEN);
       const userId = localStorage.getItem(localStorageTypes.USER_ID);
       const participantId = localStorage.getItem(localStorageTypes.PARTICIPANT_ID);
+      const timeStart = localStorage.setItem(localStorageTypes.TIME_START);
+      const simulatedTimeSpeed = localStorage.setItem(localStorageTypes.SIMULATED_TIME_SPEED);
+
       if (!participantId) {
         return dispatch(authDestroy());
       }
@@ -15,6 +19,8 @@ export const authInit = () => {
         token,
         userId,
         participantId,
+        timeStart,
+        simulatedTimeSpeed,
       }));
     } catch (error) {
       dispatch(authDestroy());
@@ -25,21 +31,33 @@ export const authInit = () => {
 export const authCreate = (auth) => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.get(`/initparticipant/${auth.participantId}/`); // /initparticipant/${participantId}
-      console.log(response.data.sessionKey);
-      console.log(response.data.sessionKey);
+      const { dataTODO, } = await axios.get(`/initparticipant/${auth.participantId}/`); // /initparticipant/${participantId}
+      const data = {
+        'sessionKey': 'sessionKey',
+        'userID': 1,
+        'participantId': 'participantID',
+        'timeStart': '2018-06-29T07:36:26Z',
+        'simulatedTimeSpeed': 3,
+      };
       dispatch({
         type: actionTypes.AUTH_CREATE,
         payload: {
-          token: response.data.sessionKey,
-          userId: response.data.userID,
+          token: data.sessionKey,
+          userId: data.userID,
+          participantId: data.participantId,
+          timeStart: data.timeStart, // Date object not needed by react-moment
+          simulatedTimeSpeed: data.simulatedTimeSpeed,
         },
       });
+      dispatch({ type: actionTypes.SOCKET_CREATE, });
       localStorage.setItem(localStorageTypes.TOKEN);
       localStorage.setItem(localStorageTypes.USER_ID);
       localStorage.setItem(localStorageTypes.PARTICIPANT_ID);
+      localStorage.setItem(localStorageTypes.TIME_START);
+      localStorage.setItem(localStorageTypes.SIMULATED_TIME_SPEED);
     } catch (error) {
       dispatch(authDestroy());
+      console.error(error);
     }
   };
 };
@@ -50,12 +68,13 @@ export const authDestroy = () => {
       window.sessionStorage.clear();
       window.localStorage.clear();
       dispatch({ type: actionTypes.AUTH_DESTROY, });
-      // AUTH_DESTROY
-      // CHAT_RESET
-      // RESOURCE_RESET
-      // Etc.
+      dispatch({ type: actionTypes.SOCKET_DESTORY, });
+      dispatch({ type: `${actionTypes.PREFIXES_CHAT}_${actionTypes.ITEMS_DESTROY}`, });
+      dispatch({ type: `${actionTypes.PREFIXES_RESOURCES}_${actionTypes.ITEMS_DESTROY}`, });
+      dispatch({ type: `${actionTypes.PREFIXES_TASKS}_${actionTypes.ITEMS_DESTROY}`, });
+      dispatch({ type: `${actionTypes.PREFIXES_BRIEFINGS}_${actionTypes.ITEMS_DESTROY}`, });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 };

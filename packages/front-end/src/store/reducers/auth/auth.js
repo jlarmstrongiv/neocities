@@ -1,18 +1,23 @@
 import * as actionTypes from 'store/actions/actionTypes';
-import { updateObject, } from 'utilities';
 
 const initialState = {
   token: '',
   userId: '',
   participantId: '',
+  timeStart: '',
+  simulatedTimeSpeed: '',
   authRedirectPath: '/',
 };
 
 const authCreate = (state, action) => {
+  const { payload , } = action;
   return {
     ...state,
-    token: action.payload.token,
-    userId: action.payload.userId,
+    token: payload.token,
+    userId: payload.userId,
+    participantId: payload.participantId,
+    timeStart: payload.timeStart,
+    simulatedTimeSpeed: payload.simulatedTimeSpeed,
   };
 };
 
@@ -21,6 +26,9 @@ const authDestroy = (state, action) => {
     ...state,
     token: '',
     userId: '',
+    participantId: '',
+    timeStart: '',
+    simulatedTimeSpeed: '',
   };
 };
 

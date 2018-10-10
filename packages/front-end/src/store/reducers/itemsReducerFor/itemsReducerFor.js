@@ -1,4 +1,4 @@
-import { updateObject, immutableSplice, } from 'utilities';
+import { immutableSplice, } from 'utilities';
 import * as actionTypes from 'store/actions/actionTypes';
 
 // https://techblog.appnexus.com/five-tips-for-working-with-redux-in-large-applications-89452af4fdcb#fe11
@@ -18,24 +18,24 @@ const itemsDestroy = (state, action) => {
   };
 };
 const itemsAdd = (state, action) => {
-  const itemOrder = immutableSplice(state.itemOrder, action.payload.itemIndex, 0, [action.payload.item,]);
+  const itemsOrder = immutableSplice(state.itemsOrder, action.payload.itemIndex, 0, [action.payload.item,]);
   return {
     ...state,
     items: {
       ...state.items,
       [action.payload.itemId]: action.payload.item,
     },
-    itemOrder: itemOrder,
+    itemsOrder: itemsOrder,
   };
 };
 const itemsRemove = (state, action) => {
-  const itemIndex = state.itemOrder.findIndex(item => item === action.payload.itemId);
-  const itemOrder = immutableSplice(state.itemOrder, itemIndex, 1);
+  const itemIndex = state.itemsOrder.findIndex(item => item === action.payload.itemId);
+  const itemsOrder = immutableSplice(state.itemsOrder, itemIndex, 1);
   const { [action.payload.itemId]: removedItem, ...items } = this.state.items;
   return {
     ...state,
     items,
-    itemOrder,
+    itemsOrder,
   };
 };
 const itemsUpdate = (state, action) => {

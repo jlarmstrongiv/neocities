@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose, } from 'redux';
 import { connectRouter, routerMiddleware, } from 'connected-react-router';
 import { createBrowserHistory, createMemoryHistory, } from 'history';
 import rootReducer from 'store/reducers/rootReducer';
-import middlewares from 'store/reducers/middlewares/middlewares';
+import middlewares from 'store/middlewares/middlewares';
 // import createSagaMiddleware from 'redux-saga';
 
 // A nice helper to tell us if we're on the server

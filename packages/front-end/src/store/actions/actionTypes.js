@@ -1,6 +1,9 @@
 export const AUTH_CREATE = 'AUTH_CREATE';
 export const AUTH_DESTROY = 'AUTH_DESTROY';
 
+export const SOCKET_CREATE = 'SOCKET_CREATE';
+export const SOCKET_DESTORY = 'SOCKET_DESTROY';
+export const SOCKET_SEND = 'SOCKET_SEND';
 // !important
 // Prefixes do not actually include 'PREFIX_'
 // This makes it easier to add special reducers for the type
