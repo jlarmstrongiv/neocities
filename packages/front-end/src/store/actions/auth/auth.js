@@ -39,12 +39,12 @@ export const authCreate = (auth) => {
       };
       dispatch({
         type: actionTypes.AUTH_CREATE,
-        payload: { auth, },
+        payload: auth,
       });
 
       dispatch({
         type: actionTypes.SOCKET_CREATE,
-        payload: { auth , },
+        payload: auth,
       });
 
       localStorage.setItem(localStorageTypes.TOKEN, auth.token);

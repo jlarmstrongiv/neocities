@@ -5,17 +5,17 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-const ProtectedRoute = ({ component: Component, token, ...rest }) => (
+const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props => {
-      if (!token) return (
+      if (!rest.token) return (
         <Redirect to={{
           pathname: '/login',
           state: { from: props.location, },
         }} />
       );
-      return <Component {...props} />;
+      return <Component {...rest} />;
     }}
   />
 );
