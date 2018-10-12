@@ -8,14 +8,17 @@ const createNeocitiesSocket = (/* url */) => {
     switch (action.type) {
       case actionTypes.SOCKET_CREATE:
         // eslint-disable-next-line no-case-declarations
-        const { auth, } = getState();
+        const auth = action.payload;
         rws = new ReconnectingWebSocket(`wss://${baseUrl}/ws/api/dynamic_data/${auth.token}`);
         rws.onmessage = event => {
           dispatch(JSON.parse(event.data));
         };
         break;
       case actionTypes.SOCKET_DESTORY:
-        rws = undefined;
+        if (rws) {
+          rws.close();
+          rws = undefined;
+        }
         break;
       case actionTypes.SOCKET_SEND:
         if (!rws || rws.readyState >= 2) {
