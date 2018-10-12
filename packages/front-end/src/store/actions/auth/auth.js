@@ -26,25 +26,20 @@ export const authInit = () => {
 export const authCreate = (auth) => {
   return async (dispatch, getState) => {
     try {
-      // const { data, } = await axios.get(`/initparticipant/${auth.participantId}/`); // /initparticipant/${participantId}
-      const data = {
-        'sessionKey': 'sessionKey',
-        'userID': 1,
-        'participantId': 'participantID',
-      };
-      const auth = {
+      const { data, } = await axios.get(`/initparticipant/${auth.participantId}`); // /initparticipant/${participantId}
+      const verifiedAuth = {
         token: data.sessionKey,
         userId: data.userID,
-        participantId: data.participantId,
+        participantId: auth.participantId,
       };
       dispatch({
         type: actionTypes.AUTH_CREATE,
-        payload: auth,
+        payload: verifiedAuth,
       });
 
       dispatch({
         type: actionTypes.SOCKET_CREATE,
-        payload: auth,
+        payload: verifiedAuth,
       });
 
       localStorage.setItem(localStorageTypes.TOKEN, auth.token);

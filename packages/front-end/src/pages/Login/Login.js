@@ -10,9 +10,10 @@ class Login extends React.Component {
     this.props.onAuthInit();
   }
   onLoginChange = event => {
+    const participantId = event.target.value.trim();
     this.setState({ auth: {
       ...this.state.auth,
-      participantId: event.target.value,
+      participantId: participantId,
     }, });
   }
   onLoginSubmit = event => {
