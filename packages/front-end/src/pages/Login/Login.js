@@ -5,7 +5,7 @@ import { Redirect, } from 'react-router-dom';
 import * as actions from 'store/actions';
 
 class Login extends React.Component {
-  state = { auth: { participantId: '', }, }
+  state = { auth: { participantId: 'participantID', }, };
   componentDidMount() {
     this.props.onAuthInit();
   }
@@ -15,26 +15,27 @@ class Login extends React.Component {
       ...this.state.auth,
       participantId: participantId,
     }, });
-  }
+  };
   onLoginSubmit = event => {
     this.props.onAuthCreate(this.state.auth);
-  }
+  };
   render() {
     return (
       <div>
-        <IsAuth render={({ isAuth, }) => {
-          if (isAuth) return (
-            <Redirect to='/dashboard' />
-          );
-          return (
-            <React.Fragment>
-              <input
-                value={this.state.participantId}
-                onChange={this.onLoginChange}></input>
-              <button onClick={this.onLoginSubmit}>Login</button>
-            </React.Fragment>
-          );
-        }} />
+        <IsAuth
+          render={({ isAuth, }) => {
+            if (isAuth) return <Redirect to="/dashboard" />;
+            return (
+              <React.Fragment>
+                <input
+                  value={this.state.auth.participantId}
+                  onChange={this.onLoginChange}
+                />
+                <button onClick={this.onLoginSubmit}>Login</button>
+              </React.Fragment>
+            );
+          }}
+        />
       </div>
     );
   }
