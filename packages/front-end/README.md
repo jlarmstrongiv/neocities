@@ -21,3 +21,6 @@ StoreFactory
 [x] Change NavItem to follow render prop pattern of IsAuth
 [] Axios props https://stackoverflow.com/questions/39153080/how-can-i-get-the-status-code-from-an-http-error-in-axios
 [] Move axios instance to utilities
+
+https://www.npmjs.com/package/yarpm
+https://www.npmjs.com/package/nyr

@@ -61,7 +61,7 @@ const itemsIsError = (state, action) => {
 };
 
 // reducer factory
-const initialItemsState = {
+export const initialItemsState = {
   items: {},
   itemsOrder: [],
   isLoading: false,
@@ -69,7 +69,7 @@ const initialItemsState = {
 };
 const itemsReducerFor = prefix => {
   const itemsReducer = (state = initialItemsState, action) => {
-    switch (`${prefix}_${action.type}`) {
+    switch (action.type) {
       case `${prefix}_${actionTypes.ITEMS_CREATE}`:
         return itemsCreate(state, action);
       case `${prefix}_${actionTypes.ITEMS_DESTROY}`:

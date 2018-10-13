@@ -2375,6 +2375,11 @@ combined-stream@~1.0.5, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
+command-exists@^1.2.2:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/command-exists/-/command-exists-1.2.8.tgz#715acefdd1223b9c9b37110a149c6392c2852291"
+  integrity sha512-PM54PkseWbiiD/mMsbvW351/u+dafwTJ0ye2qB60G1aGQP9j3xK2gmMDc+R34L3nDtx4qMCitXT75mkbkGJDLw==
+
 commander@2.17.x, commander@~2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
@@ -2601,7 +2606,7 @@ cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-cross-spawn@^5.0.1:
+cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
   integrity sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=
@@ -8075,7 +8080,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
@@ -8315,6 +8320,13 @@ react-error-overlay@^5.0.4:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.0.4.tgz#39cf184d770f98b65a2ee59a779d03b8d092b69e"
   integrity sha512-grVJtoDzIbSMYgy5rKbSOmt2FvzR4iJnpMBjXmZolSYJM5acQvBHoEbBBNW0FzTE/TLZMZ+gSy0bAHydc1hFEw==
+
+react-https-redirect@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-https-redirect/-/react-https-redirect-1.0.10.tgz#c5181d0ed649d1024b49243b8de66a3fa8b27f6e"
+  integrity sha512-uFeR92VYlG0DVSyLuKHOQuPU8CTisvYeSyD8w9ziniuWTdTi44c3ByRlR++BrL1Htotm6zVO5WL/DSfk8ju4HQ==
+  dependencies:
+    prop-types "^15.5.8"
 
 react-is@^16.3.1, react-is@^16.3.2, react-is@^16.5.2:
   version "16.5.2"
@@ -10745,3 +10757,11 @@ yargs@^11.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
+
+yarpm@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/yarpm/-/yarpm-0.2.1.tgz#5ff9bab743cdd3e77adfe1f6d6cf3396fa481e64"
+  integrity sha1-X/m6t0PN0+d63+H21s8zlvpIHmQ=
+  dependencies:
+    command-exists "^1.2.2"
+    cross-spawn "^5.1.0"

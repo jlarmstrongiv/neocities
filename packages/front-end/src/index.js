@@ -2,6 +2,7 @@ import React from 'react';
 import { render, hydrate, } from 'react-dom';
 import { Provider, } from 'react-redux';
 import { ConnectedRouter, } from 'connected-react-router';
+import HttpsRedirect from 'react-https-redirect';
 
 import * as serviceWorker from 'serviceWorker';
 import { connectedFactory, } from 'utilities';
@@ -12,7 +13,9 @@ const { store, history, } = connectedFactory();
 export const root = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <HttpsRedirect>
+        <App />
+      </HttpsRedirect>
     </ConnectedRouter>
   </Provider>
 );

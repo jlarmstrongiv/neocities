@@ -1,12 +1,11 @@
 import reduceReducers from 'reduce-reducers';
-import itemsReducerFor from 'store/reducers/itemsReducerFor/itemsReducerFor';
+import itemsReducerFor, { initialItemsState, } from 'store/reducers/itemsReducerFor/itemsReducerFor';
 import * as actionTypes from 'store/actions/actionTypes';
-import { updateObject, } from 'utilities';
 
-const initialState = {};
+const initialState = { ...initialItemsState, };
 
 const reduce = (state, action) => {
-  return updateObject(...state, {});
+  return {};
 };
 
 const reducer = (state = initialState, action) => {

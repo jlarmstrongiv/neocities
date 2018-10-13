@@ -4,6 +4,8 @@ const initialState = {
   token: '',
   userId: '',
   participantId: '',
+  isLoading: '',
+  isError: '',
   authRedirectPath: '/',
 };
 
@@ -26,12 +28,30 @@ const authDestroy = (state, action) => {
   };
 };
 
+const authIsLoading = (state, action) => {
+  return {
+    ...state,
+    isLoading: action.payload.isLoading,
+  };
+};
+
+const authIsError = (state, action) => {
+  return {
+    ...state,
+    isError: action.payload.isError,
+  };
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_CREATE:
       return authCreate(state, action);
     case actionTypes.AUTH_DESTROY:
       return authDestroy(state, action);
+    case actionTypes.AUTH_IS_LOADING:
+      return authIsLoading(state, action);
+    case actionTypes.AUTH_IS_ERROR:
+      return authIsError(state, action);
     default:
       return state;
   }

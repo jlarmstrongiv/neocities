@@ -1,10 +1,23 @@
 import axios from 'axios/axios';
 import * as actionTypes from 'store/actions/actionTypes';
-import * as localStorageTypes from 'store/actions/localStorageTypes';
 
 // check to see if state auth already exists == do nothing
 // if no state auth, then check localStorage auth and re-verify with server and set state
 // if no state auth or local storage, just clear everything
+
+export const authIsLoading = payload => {
+  return {
+    type: actionTypes.AUTH_IS_LOADING,
+    payload,
+  };
+};
+
+export const authIsError = payload => {
+  return {
+    type: actionTypes.AUTH_IS_ERROR,
+    payload,
+  };
+};
 
 export const authInit = () => {
   return async (dispatch, getState) => {
@@ -13,45 +26,45 @@ export const authInit = () => {
       if (auth.token && auth.userId && auth.participantId) {
         return;
       }
-      const localAuth = {
-        token: localStorage.getItem(localStorageTypes.TOKEN),
-        userId: localStorage.getItem(localStorageTypes.USER_ID),
-        participantId: localStorage.getItem(localStorageTypes.PARTICIPANT_ID),
-      };
-      if (localAuth.token && localAuth.userId && localAuth.participantId) {
-        return dispatch(authCreate(localAuth));
+      const localAuth = localStorage.getItem(actionTypes.LS_AUTH);
+      if (localAuth && localAuth.token && localAuth.userId && localAuth.participantId) {
+        return dispatch(authFetch(localAuth));
       }
-      dispatch(authDestroy());
+      // dispatch(authDestroy());
     } catch (error) {
       dispatch(authDestroy());
     }
   };
 };
 
-export const authCreate = (auth) => {
+export const authFetch = (auth) => {
   return async (dispatch, getState) => {
     try {
+      dispatch(authIsError({ isError: false, }));
+      dispatch(authIsLoading({ isLoading: true, }));
+
       const { data, } = await axios.get(`/initparticipant/${auth.participantId}`);
       const verifiedAuth = {
         token: data.sessionKey,
         userId: data.userID,
         participantId: auth.participantId,
       };
+
       dispatch({
         type: actionTypes.AUTH_CREATE,
         payload: verifiedAuth,
       });
-
       dispatch({
         type: actionTypes.SOCKET_CREATE,
         payload: verifiedAuth,
       });
+      dispatch(authIsLoading({ isLoading: false, }));
 
-      localStorage.setItem(localStorageTypes.TOKEN, auth.token);
-      localStorage.setItem(localStorageTypes.USER_ID, auth.userId);
-      localStorage.setItem(localStorageTypes.PARTICIPANT_ID, auth.participantId);
+      localStorage.setItem(actionTypes.LS_AUTH, auth);
     } catch (error) {
       dispatch(authDestroy());
+      dispatch(authIsLoading({ isLoading: false, }));
+      dispatch(authIsError({ isError: error, }));
       console.error(error);
     }
   };

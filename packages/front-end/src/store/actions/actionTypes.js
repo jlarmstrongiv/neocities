@@ -1,5 +1,7 @@
 export const AUTH_CREATE = 'AUTH_CREATE';
 export const AUTH_DESTROY = 'AUTH_DESTROY';
+export const AUTH_IS_LOADING = 'AUTH_IS_LOADING';
+export const AUTH_IS_ERROR = 'AUTH_IS_ERROR';
 
 export const SIMULATED_TIME_SET = 'SIMULATED_TIME_SET';
 export const SIMULATED_TIMER_NAME = 'SIMULATED_TIMER_NAME';
@@ -10,15 +12,6 @@ export const SIMULATED_TIMER_DESTROY = 'SIMULATED_TIMER_DESTROY';
 export const SOCKET_CREATE = 'SOCKET_CREATE';
 export const SOCKET_DESTORY = 'SOCKET_DESTROY';
 export const SOCKET_SEND = 'SOCKET_SEND';
-// !important
-// Prefixes do not actually include 'PREFIX_'
-// This makes it easier to add special reducers for the type
-// Such as RESOURCES_CHANGE_STATUS
-// Wait, does this actually matter?
-export const PREFIXES_CHAT = 'CHAT';
-export const PREFIXES_RESOURCES = 'RESOURCES';
-export const PREFIXES_TASKS = 'TASKS';
-export const PREFIXES_BRIEFINGS = 'BRIEFINGS';
 
 export const ITEMS_CREATE = 'ITEMS_CREATE';
 export const ITEMS_DESTROY = 'ITEMS_DESTROY';
@@ -33,8 +26,28 @@ export const SESSION_CHECK = 'SESSION_CHECK';
 export const LOCALSTORAGE_CLEAR = 'LOCALSTORAGE_CLEAR';
 export const LOCALSTORAGE_CHECK = 'LOCALSTORAGE_CHECK';
 
-// TEMP
+// !temp
 export const REDUCE = 'REDUCE';
+
+// !important
+// Prefixes are not included in the actual constant
+export const PREFIXES_CHAT = 'CHAT';
+export const PREFIXES_RESOURCES = 'RESOURCES';
+export const PREFIXES_TASKS = 'TASKS';
+export const PREFIXES_BRIEFINGS = 'BRIEFINGS';
+
+// Local Storage
+export const LS_AUTH = 'AUTH';
+export const LS_CHAT = 'CHAT';
+export const LS_RESOURCES = 'RESOURCES';
+export const LS_TASKS = 'TASKS';
+export const LS_BRIEFINGS = 'BRIEFINGS';
+// export const LS_TOKEN = 'TOKEN';
+// export const LS_USER_ID = 'USER_ID';
+// export const LS_PARTICIPANT_ID = 'PARTICIPANT_ID';
+// export const LS_TIME_START = 'TIME_START';
+// export const LS_SIMULATED_TIME_SPEED = 'SIMULATED_TIME_SPEED';
+
 
 // what about init, create, destroy?
 
