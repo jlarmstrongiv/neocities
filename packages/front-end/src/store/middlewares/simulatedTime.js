@@ -1,5 +1,5 @@
 import * as actionTypes from 'store/actions/actionTypes';
-import { START_TIMER, STOP_TIMER, } from 'redux-timer';
+import { START_TIMER, STOP_TIMER, } from 'redux-timer'; // https://github.com/elselabs/redux-timer
 
 export default ({ dispatch, getState, }) => next => action => {
   switch (action.type) {
