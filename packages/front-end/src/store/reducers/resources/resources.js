@@ -1,8 +1,8 @@
 import reduceReducers from 'reduce-reducers';
-import itemsReducerFor, { initialItemsState, } from 'store/reducers/itemsReducerFor/itemsReducerFor';
+import itemsReducerFor from 'store/reducers/itemsReducerFor/itemsReducerFor';
 import * as actionTypes from 'store/actions/actionTypes';
 
-const initialState = { ...initialItemsState, };
+const initialState = { ...itemsReducerFor.initialItemsState, };
 
 const reduce = (state, action) => {
   return {};

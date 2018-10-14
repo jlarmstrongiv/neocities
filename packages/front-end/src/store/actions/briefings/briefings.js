@@ -9,13 +9,13 @@ export const briefingsInit = () => {
       if (briefings.items.length && briefings.itemsOrder.length) {
         return;
       }
-      const localBriefings = localStorage.getItem(actionTypes.LS_BRIEFINGS);
+      const localBriefings = localStorage.getItem(actionTypes.PREFIXES_BRIEFINGS);
       if (localBriefings && localBriefings.items.length && localBriefings.itemsOrder.length) {
         return dispatch(briefingsCreate(localBriefings));
       }
       dispatch(briefingsFetch());
     } catch (error) {
-      dispatch(briefingsIsError({ isLoading: false, }));
+      dispatch(briefingsIsLoading({ isLoading: false, }));
       dispatch(briefingsIsError({ isError: error, }));
     }
   };
@@ -32,7 +32,7 @@ export const briefingsFetch = () => {
       dispatch(briefingsCreate(data));
       dispatch(briefingsIsLoading({ isLoading: false, }));
 
-      localStorage.setItem(actionTypes.LS_BRIEFINGS, data);
+      localStorage.setItem(actionTypes.PREFIXES_BRIEFINGS, data);
     } catch (error) {
       dispatch(briefingsIsLoading({ isLoading: false, }));
       dispatch(briefingsIsError({ isError: error, }));

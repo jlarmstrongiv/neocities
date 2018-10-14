@@ -26,7 +26,7 @@ export const authInit = () => {
       if (auth.token && auth.userId && auth.participantId) {
         return;
       }
-      const localAuth = localStorage.getItem(actionTypes.LS_AUTH);
+      const localAuth = localStorage.getItem(actionTypes.PREFIXES_AUTH);
       if (localAuth && localAuth.token && localAuth.userId && localAuth.participantId) {
         return dispatch(authFetch(localAuth));
       }
@@ -60,7 +60,7 @@ export const authFetch = (auth) => {
       });
       dispatch(authIsLoading({ isLoading: false, }));
 
-      localStorage.setItem(actionTypes.LS_AUTH, auth);
+      localStorage.setItem(actionTypes.PREFIXES_AUTH, auth);
     } catch (error) {
       dispatch(authDestroy());
       dispatch(authIsLoading({ isLoading: false, }));

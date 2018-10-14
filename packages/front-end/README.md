@@ -24,3 +24,12 @@ StoreFactory
 
 https://www.npmjs.com/package/yarpm
 https://www.npmjs.com/package/nyr
+
+Refactor the Briefings actions into action factories accepting the prefix and verificatin key.
+Replace all LS_LOCAL_STORAGE with the PREFIX_
+Because updates must occur, consider init'ing all stores in dashboard
+
+Change the itemsReducerFor destructured inmport to just a key on the larger object Reducer.initialState
+
+authDestroy should destroy websocket connection with .close
+create sshould be passed the auth object (not reference global state)

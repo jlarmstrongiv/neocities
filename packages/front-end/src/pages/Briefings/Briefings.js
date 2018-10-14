@@ -10,7 +10,7 @@ class Briefings extends React.Component {
     return (
       <div>
         Briefings
-        {JSON.stringify(this.props.briefings)}
+        <div>{JSON.stringify(this.props.briefings)}</div>
       </div>
     );
   }
