@@ -33,3 +33,5 @@ Change the itemsReducerFor destructured inmport to just a key on the larger obje
 
 authDestroy should destroy websocket connection with .close
 create sshould be passed the auth object (not reference global state)
+
+Implement redux form for login and messagebox

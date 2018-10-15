@@ -6,6 +6,19 @@ class Chat extends React.Component {
   componentDidMount() {
     this.props.onChatInit();
   }
+  state = { message: 'testMessage', }
+  onMessageChange = event => {
+    this.setState({
+      ...this.state,
+      message: event.target.value,
+    });
+  }
+  onMessageSend = event => {
+    const message = this.state.message.trim();
+    if (message) {
+      // this.props.
+    }
+  }
   render() {
     return (
       <div>

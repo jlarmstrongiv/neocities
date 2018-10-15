@@ -19,5 +19,5 @@ const reducer = (state = initialState, action) => {
 
 export default reduceReducers(
   reducer,
-  itemsReducerFor(actionTypes.PREFIXES_TASKS)
+  itemsReducerFor(actionTypes.PREFIXES_ROLES)
 );

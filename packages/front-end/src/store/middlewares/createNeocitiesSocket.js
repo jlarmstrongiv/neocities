@@ -11,7 +11,7 @@ const createNeocitiesSocket = (/* url */) => {
         const auth = action.payload;
         rws = new ReconnectingWebSocket(`wss://${baseUrl}/ws/api/dynamic_data/${auth.token}/`);
         rws.onmessage = event => {
-          console.log(event);
+          console.log(JSON.parse(event.data));
           dispatch(JSON.parse(event.data));
         };
         break;
@@ -26,7 +26,7 @@ const createNeocitiesSocket = (/* url */) => {
           // the ReconnectingWebSocket has a message queue
           // throw new Error('WebSocket Closing or Closed');
         }
-        rws.send(JSON.stringify(action));
+        rws.send(JSON.stringify(action.payload));
         break;
       default:
         // if the action is not relevant, send it to the next middleware

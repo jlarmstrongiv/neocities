@@ -19,7 +19,7 @@ export default ({ dispatch, getState, }) => next => action => {
           action: () => {
             /* eslint-disable no-case-declarations */
             const { time, } = getState();
-            const currentTime = (Date.now() / 1000) | 0;
+            const currentTime = Date.now() / 1000 | 0;
             const timeOffset = currentTime - time.timeStart;
             const simulatedTime = time.timeStart + timeOffset * time.simulatedTimeSpeed;
             // Remember that JS creates millisecond timestamps

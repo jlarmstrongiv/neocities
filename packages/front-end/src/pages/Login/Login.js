@@ -17,7 +17,9 @@ class Login extends React.Component {
   };
   onLoginSubmit = event => {
     const participantId = this.state.loginValue.trim();
-    this.props.onAuthCreate({ participantId, });
+    if (participantId) {
+      this.props.onAuthCreate({ participantId, });
+    }
   };
   render() {
     return (

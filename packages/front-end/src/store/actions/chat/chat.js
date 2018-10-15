@@ -28,7 +28,7 @@ export const chatFetch = () => {
       dispatch(chatIsLoading({ isLoading: true, }));
 
       const { auth, } = getState();
-      const { data, } = await axios.get(`/messages/${auth.participantId}`);
+      const { data, } = await axios.get(`/messages/${auth.userId}`);
       dispatch(chatCreate(data));
       dispatch(chatIsLoading({ isLoading: false, }));
 
@@ -47,5 +47,20 @@ export const chatRemove = itemActions.removeFor(actionTypes.PREFIXES_CHAT);
 export const chatIsLoading = itemActions.isLoadingFor(actionTypes.PREFIXES_CHAT);
 export const chatIsError = itemActions.isErrorFor(actionTypes.PREFIXES_CHAT);
 
+export const chatSend = (chat) => {
+  return async (dispatch, getState) => {
+    try {
+      const { auth, } = getState();
+      // eslint-disable-next-line no-unused-vars
+      const response = await axios.post(`/messages/${auth.userId}`, {
+        participant: auth.userId,
+        text: chat.message,
+        chat_session: chat.sessionId,
+      });
+    } catch (error) {
+      dispatch(chatIsError({ isError: error, }));
+    }
+  };
+};
 // const setUsersPagination = setPaginationFor('USERS_');
 // const setDomainsPagination = setPaginationFor('DOMAINS_');

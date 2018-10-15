@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect, } from 'react-redux';
 import * as actions from 'store/actions';
+import Task from 'pages/Tasks/Task';
 
 class Tasks extends React.Component {
   componentDidMount() {
@@ -10,14 +11,20 @@ class Tasks extends React.Component {
     return (
       <div>
         Tasks
-        <div>{JSON.stringify(this.props.tasks)}</div>
+        <div>
+          {this.props.tasksOrder.map(taskId => (
+            <Task
+              key={taskId}
+              taskId={taskId} />
+          ))}
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { tasks: state.tasks, };
+  return { tasksOrder: state.tasks.itemsOrder, };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return { onTasksInit: () => dispatch(actions.tasksInit()), };

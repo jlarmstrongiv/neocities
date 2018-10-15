@@ -4,6 +4,7 @@ const initialState = {
   token: '',
   userId: '',
   participantId: '',
+  roleId: '',
   isLoading: '',
   isError: '',
   authRedirectPath: '/',
@@ -16,6 +17,7 @@ const authCreate = (state, action) => {
     token: payload.token,
     userId: payload.userId,
     participantId: payload.participantId,
+    roleId: payload.roleId,
   };
 };
 
@@ -25,6 +27,7 @@ const authDestroy = (state, action) => {
     token: '',
     userId: '',
     participantId: '',
+    roleId: '',
   };
 };
 

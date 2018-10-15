@@ -28,7 +28,7 @@ export const resourcesFetch = () => {
       dispatch(resourcesIsLoading({ isLoading: true, }));
 
       const { auth, } = getState();
-      const { data, } = await axios.get(`/resources/${auth.token}`);
+      const { data, } = await axios.get(`/resourcedepots/${auth.token}`);
       dispatch(resourcesCreate(data));
       dispatch(resourcesIsLoading({ isLoading: false, }));
 
@@ -47,5 +47,25 @@ export const resourcesRemove = itemActions.removeFor(actionTypes.PREFIXES_RESOUR
 export const resourcesIsLoading = itemActions.isLoadingFor(actionTypes.PREFIXES_RESOURCES);
 export const resourcesIsError = itemActions.isErrorFor(actionTypes.PREFIXES_RESOURCES);
 
+export const resourcesMove = (resource) => {
+  return async (dispatch, getState) => {
+    try {
+      const { auth, } = getState();
+      const timestamp = (Date.now() / 1000) | 0;
+      // eslint-disable-next-line no-unused-vars
+      const response = await axios.post('/action', {
+        timestamp: timestamp,
+        action_type: resource.movement, // actionTypes.RESOURCE_DEPLOY, actionTypes.RESOURCE_RECALL
+        session: auth.token,
+        participant: auth.userId,
+        quantity: resource.quantity,
+        resource: resource.resourceId,
+        event: resource.eventId,
+      });
+    } catch (error) {
+      dispatch(resourcesIsError({ isError: error, }));
+    }
+  };
+};
 // const setUsersPagination = setPaginationFor('USERS_');
 // const setDomainsPagination = setPaginationFor('DOMAINS_');

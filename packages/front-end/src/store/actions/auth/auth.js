@@ -23,11 +23,11 @@ export const authInit = () => {
   return async (dispatch, getState) => {
     try {
       const { auth, } = getState();
-      if (auth.token && auth.userId && auth.participantId) {
+      if (auth.token && auth.userId && auth.participantId && auth.roleId) {
         return;
       }
       const localAuth = localStorage.getItem(actionTypes.PREFIXES_AUTH);
-      if (localAuth && localAuth.token && localAuth.userId && localAuth.participantId) {
+      if (localAuth && localAuth.token && localAuth.userId && localAuth.participantId && localAuth.roleId) {
         return dispatch(authFetch(localAuth));
       }
       // dispatch(authDestroy());
@@ -48,6 +48,7 @@ export const authFetch = (auth) => {
         token: data.sessionKey,
         userId: data.userID,
         participantId: auth.participantId,
+        roleId: data.roleID,
       };
 
       dispatch({

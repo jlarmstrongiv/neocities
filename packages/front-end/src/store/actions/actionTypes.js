@@ -26,6 +26,9 @@ export const SESSION_CHECK = 'SESSION_CHECK';
 export const LOCALSTORAGE_CLEAR = 'LOCALSTORAGE_CLEAR';
 export const LOCALSTORAGE_CHECK = 'LOCALSTORAGE_CHECK';
 
+export const RESOURCE_DEPLOY = 'DEPLOY';
+export const RESOURCE_RECALL = 'RECALL';
+
 // !temp
 export const REDUCE = 'REDUCE';
 
@@ -36,6 +39,7 @@ export const PREFIXES_CHAT = 'CHAT';
 export const PREFIXES_RESOURCES = 'RESOURCES';
 export const PREFIXES_TASKS = 'TASKS';
 export const PREFIXES_BRIEFINGS = 'BRIEFINGS';
+export const PREFIXES_ROLES = 'ROLES';
 
 // what about init, create, destroy?
 
