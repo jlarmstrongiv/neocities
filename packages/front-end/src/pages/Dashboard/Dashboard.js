@@ -8,6 +8,8 @@ class Dashboard extends React.Component {
     this.props.onResourcesInit();
     this.props.onTasksInit();
     this.props.onBriefingsInit();
+    this.props.onRolesInit();
+    this.props.onResInit();
   }
   render() {
     return (
@@ -28,6 +30,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onResourcesInit: () => dispatch(actions.resourcesInit()),
     onTasksInit: () => dispatch(actions.tasksInit()),
     onBriefingsInit: () => dispatch(actions.briefingsInit()),
+    onRolesInit: () => dispatch(actions.rolesInit()),
+    onResInit: () => dispatch(actions.resInit()),
   };
 };
 

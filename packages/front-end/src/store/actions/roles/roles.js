@@ -1,4 +1,5 @@
 // import axios from 'axios/axios';
+import data from 'store/actions/roles/roles-api';
 import * as actionTypes from 'store/actions/actionTypes';
 import * as itemActions from 'store/actions/itemsActionsFor/itemsActionsFor';
 
@@ -29,21 +30,7 @@ export const rolesFetch = () => {
 
       // const { auth, } = getState();
       // const { data, } = await axios.get(`/roles/${auth.token}`);
-      const data = {
-        items: {
-          1: {
-            'icon': 'http://neocities.herokuapp.com/api/role/icons/roles/cycle.jpg',
-            'id': 1,
-            'name': 'Athenian Counciler',
-          },
-          2: {
-            'icon': 'http://neocities.herokuapp.com/api/role/icons/roles/cycle_0rymsaZ.jpg',
-            'id': 2,
-            'name': 'City State Governor',
-          },
-        },
-        itemsOrder: [1, 2,],
-      };
+
       dispatch(rolesCreate(data));
       dispatch(rolesIsLoading({ isLoading: false, }));
 

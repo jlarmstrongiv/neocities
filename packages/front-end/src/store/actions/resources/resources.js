@@ -28,8 +28,10 @@ export const resourcesFetch = () => {
       dispatch(resourcesIsLoading({ isLoading: true, }));
 
       const { auth, } = getState();
+
       const { data, } = await axios.get(`/resourcedepots/${auth.token}`);
       dispatch(resourcesCreate(data));
+
       dispatch(resourcesIsLoading({ isLoading: false, }));
 
       localStorage.setItem(actionTypes.PREFIXES_RESOURCES, data);

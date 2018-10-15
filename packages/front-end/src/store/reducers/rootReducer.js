@@ -6,6 +6,7 @@ import resources from 'store/reducers/resources/resources';
 import tasks from 'store/reducers/tasks/tasks';
 import briefings from 'store/reducers/briefings/briefings';
 import roles from 'store/reducers/roles/roles';
+import res from 'store/reducers/res/res';
 
 const rootReducer = combineReducers({
   auth,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   tasks,
   briefings,
   roles,
+  res,
 });
 
 export default rootReducer;
