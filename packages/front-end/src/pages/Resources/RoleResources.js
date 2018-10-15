@@ -9,7 +9,9 @@ class Resources extends React.Component {
   render() {
     return (
       <div>
+        <br />
         {this.props.role.name}
+        <br />
         Resources
         <div>
           {this.props.resourcesOrder.map(resourceId => (
@@ -25,7 +27,7 @@ class Resources extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    resourcesOrder: selectors.resourcesOrderByRole(state),
+    resourcesOrder: selectors.resourcesOrderByRole(state, ownProps.roleId),
     role: state.roles.items[ownProps.roleId],
   };
 };
