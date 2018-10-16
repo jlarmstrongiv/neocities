@@ -11,6 +11,12 @@ export const resourceRes = createCachedSelector(
   resourceId,
   resource,
   (res, resOrder, resourceId, resource) => {
+    Object.entries(res).map((rsstate) => {
+      if(rsstate[1].resource.id == resourceId){
+        resource["deployed"] = rsstate[1]["deployed"]        
+      }
+    })
+    console.log("In the selector", res, "Resource: ", resource)
     return resource;
   }
 )(

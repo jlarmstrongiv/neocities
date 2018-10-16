@@ -1,5 +1,5 @@
 // import axios from 'axios/axios';
-import data from 'store/actions/res/res-api';
+import axios from 'axios/axios';
 import * as actionTypes from 'store/actions/actionTypes';
 import * as itemActions from 'store/actions/itemsActionsFor/itemsActionsFor';
 
@@ -28,8 +28,8 @@ export const resFetch = () => {
       dispatch(resIsError({ isError: false, }));
       dispatch(resIsLoading({ isLoading: true, }));
 
-      // const { auth, } = getState();
-      // const { data, } = await axios.get(`/resourceeventstate/${auth.token}`);
+      const { auth, } = getState();
+      const { data, } = await axios.get(`/resourceeventstate/${auth.token}`);
       dispatch(resCreate(data));
 
       dispatch(resIsLoading({ isLoading: false, }));

@@ -28,7 +28,7 @@ export const chatFetch = () => {
       dispatch(chatIsLoading({ isLoading: true, }));
 
       const { auth, } = getState();
-      const { data, } = await axios.get(`/messages/${auth.userId}`);
+      const { data, } = await axios.get(`/messages/${auth.chatSession}`);
       dispatch(chatCreate(data));
       dispatch(chatIsLoading({ isLoading: false, }));
 

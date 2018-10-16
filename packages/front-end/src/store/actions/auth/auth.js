@@ -49,7 +49,9 @@ export const authFetch = (auth) => {
         userId: data.userID,
         participantId: auth.participantId,
         roleId: data.roleID,
+        chatSession: data.chatSessions
       };
+
 
       dispatch({
         type: actionTypes.AUTH_CREATE,

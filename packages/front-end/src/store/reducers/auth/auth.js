@@ -7,6 +7,7 @@ const initialState = {
   roleId: '',
   isLoading: '',
   isError: '',
+  chatSession: '',
   authRedirectPath: '/',
 };
 
@@ -18,6 +19,7 @@ const authCreate = (state, action) => {
     userId: payload.userId,
     participantId: payload.participantId,
     roleId: payload.roleId,
+    chatSession: payload.chatSession,
   };
 };
 
@@ -28,6 +30,7 @@ const authDestroy = (state, action) => {
     userId: '',
     participantId: '',
     roleId: '',
+    chatSession: '',
   };
 };
 

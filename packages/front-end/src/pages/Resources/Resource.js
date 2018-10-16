@@ -10,8 +10,10 @@ class Resource extends React.Component {
       <div>
         Name: {resource.resource.name}
         {console.log(resource)}
-        {/* <br />Deployed {resource.deployed}
-        <br />Total: {resource.total} */}
+        <br />
+          Deployed { resource.deployed } 
+        <br />
+          Total: {resource.quantity}
       </div>
     );
   }
