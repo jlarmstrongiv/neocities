@@ -2,6 +2,7 @@ import React from 'react';
 import { connect, } from 'react-redux';
 import * as actions from 'store/actions';
 import Task from 'pages/Tasks/Task';
+import TaskPanel from 'pages/Tasks/TaskPanel';
 
 class Tasks extends React.Component {
   componentDidMount() {
@@ -17,6 +18,9 @@ class Tasks extends React.Component {
               key={taskId}
               taskId={taskId} />
           ))}
+        </div>
+        <div>
+          <TaskPanel />
         </div>
       </div>
     );

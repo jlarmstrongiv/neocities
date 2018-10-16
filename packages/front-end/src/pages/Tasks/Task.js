@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect, } from 'react-redux';
+import * as selectors from 'store/selectors/task';
 
 class Task extends React.Component {
   render() {
@@ -24,6 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     }
   })
   return { task: state.tasks.items[ownProps.taskId], deployed: deployed };
+
 };
 
 // const mapDispatchToProps = (dispatch, ownProps) => {
