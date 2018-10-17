@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, } from 'react-redux';
 import * as actions from 'store/actions';
-import { VariableSizeList as List } from 'react-window';
+import { VariableSizeList as List, } from 'react-window';
 
 class Chat extends React.Component {
   componentDidMount() {
@@ -23,8 +23,10 @@ class Chat extends React.Component {
     }
   }
 
-  Row = ({ index, style }) => (
-    <div className={index % 2 ? 'ListItemOdd' : 'ListItemEven'} style={style}>
+  Row = ({ index, style, }) => (
+    <div
+      className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
+      style={style}>
       <span>{ this.props.chat.items[this.props.chat.itemsOrder[index]].participant.name }</span>
       <span>: { this.props.chat.items[this.props.chat.itemsOrder[index]].text }</span>
     </div>
@@ -34,15 +36,15 @@ class Chat extends React.Component {
     return (
       <div>
           Chat
-            <List
-              className="ChatBox"
-              height={150}
-              itemCount={this.props.chat.itemsOrder.length}
-              itemSize={() => 20}
-              width={300}
-            >
-              {this.Row}
-            </List>
+        <List
+          className="ChatBox"
+          height={150}
+          itemCount={this.props.chat.itemsOrder.length}
+          itemSize={() => 20}
+          width={300}
+        >
+          {this.Row}
+        </List>
       </div>
     );
   }
