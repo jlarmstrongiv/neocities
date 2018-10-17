@@ -14,6 +14,9 @@ class Chat extends React.Component {
       ...this.state,
       message: event.target.value,
     });
+    if (event.key == "Enter") {
+      this.props.chatSend({"message": event.target.value.trim()})
+    }
   }
 
   onMessageSend = event => {
@@ -43,6 +46,7 @@ class Chat extends React.Component {
             >
               {this.Row}
             </List>
+            <input id="chatInpt" placeholder={ "@" } onKeyPress={ this.onMessageChange.bind(this) }></input>
       </div>
     );
   }
@@ -53,7 +57,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return { onChatInit: () => dispatch(actions.chatInit()), };
+  return { 
+    onChatInit: () => dispatch(actions.chatInit()), 
+    chatSend: (payload) => dispatch(actions.chatSend(payload)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);
