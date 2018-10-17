@@ -1,6 +1,5 @@
 import createCachedSelector from 're-reselect';
 import { updateObject, } from 'utilities';
-
 const res = state => state.res.items;
 const resOrder = state => state.res.itemsOrder;
 const resourceId = (state, resourceId) => resourceId;
@@ -15,22 +14,17 @@ export const resourceRes = createCachedSelector(
     const resResourceOrder = resOrder.filter(resId => {
       return res[resId].resource.id === resourceId;
     });
-    const resResources = resResourceOrder.map(resId => {
+    const resResourcesDeployed = resResourceOrder.map(resId => {
       return res[resId].deployed;
     });
-    // you cannot reduce on an empty array
-    let resResourceDeployed = 0;
-    if (resResources.length) {
-      resResourceDeployed = resResources.reduce(
-        (accumulator, currentValue) => {
-          return accumulator + currentValue;
-        }
-      );
-    }
+    const resResourceDeployedTotal = resResourcesDeployed.reduce((totalDeployed, deployed) => {
+      return totalDeployed + deployed;
+    }, 0);
     const resResource = updateObject(resource, {
-      deployed: resResourceDeployed,
+      deployed: resResourceDeployedTotal,
+      name: resource.resource.name,
       resource: {
-        deployed: resResourceDeployed,
+        deployed: resResourceDeployedTotal,
         quantity: resource.quantity,
       },
     });
