@@ -1,5 +1,5 @@
 // import axios from 'axios/axios';
-import data from 'store/actions/roles/roles-api';
+import axios from 'axios/axios';
 import * as actionTypes from 'store/actions/actionTypes';
 import * as itemActions from 'store/actions/itemsActionsFor/itemsActionsFor';
 
@@ -28,8 +28,8 @@ export const rolesFetch = () => {
       dispatch(rolesIsError({ isError: false, }));
       dispatch(rolesIsLoading({ isLoading: true, }));
 
-      // const { auth, } = getState();
-      // const { data, } = await axios.get(`/roles/${auth.token}`);
+      const { auth, } = getState();
+      const { data, } = await axios.get(`/roles/${auth.token}`);
 
       dispatch(rolesCreate(data));
       dispatch(rolesIsLoading({ isLoading: false, }));

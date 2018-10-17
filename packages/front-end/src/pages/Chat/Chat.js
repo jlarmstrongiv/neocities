@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect, } from 'react-redux';
 import * as actions from 'store/actions';
-import 'react-virtualized/styles.css'
-
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
-import List from 'react-virtualized/dist/commonjs/List'
+import { VariableSizeList as List } from 'react-window';
 
 class Chat extends React.Component {
   componentDidMount() {
@@ -26,44 +23,32 @@ class Chat extends React.Component {
     }
   }
 
-  rowRenderer = (
-    key,         // Unique key within array of rows
-    index,       // Index of row within collection
-    isScrolling, // The List is currently being scrolled
-    isVisible,   // This row is visible within the List (eg it is not an overscanned row)
-    style        // Style object to be applied to row (to position it)
-    )  => {
-    return (
-      <div
-        key={key}
-        style={style}
-      >
-        {this.props.chat[index]}
-      </div>
-    )
-  }
+  Row = ({ index, style }) => (
+    <div className={index % 2 ? 'ListItemOdd' : 'ListItemEven'} style={style}>
+      <span>{ this.props.chat.items[this.props.chat.itemsOrder[index]].participant.name }</span>
+      <span>: { this.props.chat.items[this.props.chat.itemsOrder[index]].text }</span>
+    </div>
+  );
 
   render() {
     return (
       <div>
           Chat
-          {/* <AutoSizer disableHeight>
             <List
+              className="ChatBox"
+              height={150}
+              itemCount={this.props.chat.itemsOrder.length}
+              itemSize={() => 20}
               width={300}
-              height={300}
-              rowCount={this.props.chat.length}
-              rowHeight={20}
-              rowRenderer={this.rowRenderer}
-            />
-          </AutoSizer> */}
-        <div>{JSON.stringify(this.props.chat)}</div>
+            >
+              {this.Row}
+            </List>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.chat)
   return { chat: state.chat, };
 };
 
