@@ -5,27 +5,29 @@ import * as selectors from 'store/selectors/task';
 class Task extends React.Component {
   render() {
     const task = this.props.task;
-    const deployed = this.props.deployed;
     return (
       <div>
+        {console.log(task)}
         <br />Description: {task.description}
         <br />Details: {task.details}
-        <br />Deployed: { deployed }
+        <br />
+        <div>
+          {Object.values(this.props.task.resources).map(resource => (
+            <div key={resource.id}>
+              <br />Name: {resource.name}
+              <br />Quantity: {resource.quantity}
+              <br />Deployed: {resource.deployed}
+            </div>
+          ))}
+        </div>
+        <br />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // TODO This needs to be abstracted to a selector
-  let res = state.res.items
-  let deployed = Object.entries(res).map((rsstate) => {
-    if(rsstate[1].event.id == ownProps.taskId){
-       return(`${rsstate[1].resource.name} : ${rsstate[1]["deployed"]} `)        
-    }
-  })
-  return { task: state.tasks.items[ownProps.taskId], deployed: deployed };
-
+  return { task: selectors.taskRes(state, ownProps.taskId), };
 };
 
 // const mapDispatchToProps = (dispatch, ownProps) => {
