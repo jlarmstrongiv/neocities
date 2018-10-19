@@ -17,7 +17,7 @@ export const taskRes = createCachedSelector(
   resourcesOrder,
   (res, resOrder, taskId, task, resources, resourcesOrder) => {
     const resTaskOrder = resOrder.filter(resId => {
-      return (res[resId].event.id === taskId); //&& (res[resId].quantity > 0);
+      return (res[resId].event.id === taskId) && (res[resId].quantity > 0);
     });
 
     const resTaskResourceIds = resTaskOrder.map(resId => {

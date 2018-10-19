@@ -3,16 +3,16 @@ import { connect, } from 'react-redux';
 import * as actionTypes from 'store/actions/actionTypes';
 import * as selectors from 'store/selectors';
 import * as actions from 'store/actions';
-
+// import TaskPanelDeploy from 'pages/Tasks/TaskPanelDeploy';
+// import TaskPanelRecall from 'pages/Tasks/TaskPanelRecall';
 
 class TaskPanel extends React.Component {
   state = {
+    selectedTaskId: '',
     selectedResourceId: '',
-    selectedResourceQuantity: 0,
-    selectedResourceMaxQuantity: '',
-    selectedTask: 1,
-    selectedMovement: actionTypes.RESOURCE_DEPLOY,
-    optionsMovement: [
+    selectedQuantity: 0,
+    movementSelected: actionTypes.RESOURCE_DEPLOY,
+    movementOptions: [
       {
         value: actionTypes.RESOURCE_DEPLOY,
         text: 'Deploy',
@@ -22,124 +22,116 @@ class TaskPanel extends React.Component {
         text: 'Recall',
       },
     ],
-  }
-  onResourceChange = event => {
-    console.log('target value: ', event.target.value);
-    const selectedResourceId = 1 * event.target.value;
-    const selectedResource = this.props.roleResources.find(roleResource => {
-      return roleResource.id === this.state.selectedResource;
-    });
-    let quantity;
-    if (selectedResource) {
-      quantity = selectedResource.quantity;
+  };
+  componentDidMount() {
+    if (!this.state.selectedTaskId) {
+      this.setState({ selectedTaskId: this.props.tasks.itemsOrder[0], });
     }
-    this.setState({
-      selectedResource: selectedResourceId,
-      selectedResourceMaxQuantity: quantity,
-    });
-  }
-  onResourceQuantityChange = event => {
-    this.setState({ selectedResourceQuantity: event.target.value});
+    if (!this.state.selectedResourceId) {
+      this.setState({ selectedResourceId: this.props.resourcesArray[0].id, });
+    }
   }
   onMovementChange = event => {
-    this.setState({ selectedMovement: event.target.value, });
+    this.setState({ movementSelected: event.target.value, });
   }
-  onSubmit = event => {
-    this.props.resourceMove({
-      movement: this.state.selectedMovement,
-      quantity: this.state.selectedResourceQuantity,
-      resourceId: this.state.selectedResource,
-      eventId: this.state.selectedTask,
+  onTaskChange = event => {
+    this.setState({ selectedTaskId: event.target.value, });
+  }
+  onResourceChange = event => {
+    this.setState({ selectedResourceId: event.target.value, });
+  }
+  onQuantityChange = event => {
+    this.setState({ selectedQuantity: 1 * event.target.value, });
+  }
+  onMove = event => {
+    this.props.onMove({
+      movement: this.state.movementSelected,
+      quantity: this.state.selectedQuantity,
+      resourceId: this.state.selectedResourceId,
+      taskId: this.state.selectedTaskId,
     });
   }
   render() {
-    return <div>
+    return (
       <div>
-        {this.state.optionsMovement.map((option, i) => (
-          <label
-            key={option.value}
-            htmlFor={option.value}>
-            <input
-              type="radio"
-              id={option.value}
-              checked={option.value === this.state.selectedMovement}
-              value={option.value}
-              onChange={this.onMovementChange}
-            />
-            {option.text}
-          </label>
-        ))}
-      </div>
-      <div>
-        <select
-          value={this.state.selectedResource}
-          onChange={this.onResourceChange}>
-          <option value=""> </option>
-          {this.props.roleResources.map(roleResource => (
-            <option
-              value={roleResource.id}
-              key={roleResource.id}>
-              {roleResource.resource.name}
-            </option>
+        {/* Choose Deploy / Recall */}
+        <div>
+          {this.state.movementOptions.map((option, i) => (
+            <label
+              key={option.value}
+              htmlFor={option.value}>
+              <input
+                type="radio"
+                id={option.value}
+                checked={option.value === this.state.movementSelected}
+                value={option.value}
+                onChange={this.onMovementChange}
+              />
+              {option.text}
+            </label>
           ))}
-        </select>
+        </div>
+        {/* Choose Task */}
+        <div>
+          <select
+            value={this.state.selectedTaskId}
+            onChange={this.onTaskChange}>
+            {this.props.tasks.itemsOrder.map(taskId => (
+              <option
+                value={taskId}
+                key={taskId}>
+                {this.props.tasks.items[taskId].description}
+              </option>
+            ))}
+            {/* <option value=""></option> */}
+          </select>
+        </div>
+        {/* Choose Resource */}
+        <div>
+          <select
+            value={this.state.selectedResourceId}
+            onChange={this.onResourceChange}>
+            {this.props.resourcesArray.map(item => {
+              return (
+                <option
+                  value={item.id}
+                  key={item.id}>
+                  {item.resource.name}
+                </option>
+              );
+            })}
+            {/* <option value=""></option> */}
+          </select>
+        </div>
+        {/* Quantity */}
+        <div>
+          <input
+            value={this.state.selectedQuantity}
+            onChange={this.onQuantityChange}
+            type="number"
+            name=""
+            id=""  />
+        </div>
+        {/* onMove */}
+        <button
+          type="submit"
+          onClick={this.onMove}>
+          {this.state.movementSelected}
+        </button>
       </div>
-      <div>
-        <label htmlFor="resourceQuantity">Quantity</label>
-        <input
-          type="number"
-          id="resourceQuantity"
-          min={0}
-          max={this.state.selectedResourceMaxQuantity}
-          onChange={this.onResourceQuantityChange} />
-        {/* // this.props.roleResources[this.state.selectedResource].quantity */}
-      </div>
-      <button onClick={this.onSubmit}  type="submit">{this.state.selectedMovement}</button>
-    </div>;
+    );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    roleResources: selectors.resourcesByRole(state, state.auth.userId),
-    resources: state.resources.items,
-    resourcesOrder: state.resources.itemsOrder,
+    tasks: state.tasks,
+    resourcesArray: selectors.resourcesByRole(state, state.auth.roleId),
   };
 };
+
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return { resourceMove: (payload) => dispatch(actions.resourcesMove(payload)) };
+  return { onMove: payload => actions.resourcesMove(payload),  };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(TaskPanel);
-
-// const select = (
-//   <select
-//     value={this.state.selectedMovement}
-//     onChange={this.onMovementChange}>
-//     {this.state.optionsMovement.map((option, i) => (
-//       <option
-//         value={option.value}
-//         key={option.value}>
-//         {option.text}
-//       </option>
-//     ))}
-//   </select>
-// );
-
-// const dataList = (
-//   <div>
-//     <input
-//       type="text"
-//       list="optionsResources"
-//       value={this.state.selectedResource}
-//       onChange={this.onResourceChange} />
-//     <datalist id="optionsResources">
-//       {console.log(this.props.roleResources)}
-//       {this.props.roleResources.map(roleResource => (
-//         <option
-//           value={roleResource.resource.name}
-//           key={roleResource.id}
-//         />
-//       ))}
-//     </datalist>
-//   </div>
-// );

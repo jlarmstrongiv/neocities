@@ -28,7 +28,6 @@ class Tasks extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.tasks.itemsOrder)
   return { tasksOrder: state.tasks.itemsOrder, };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
