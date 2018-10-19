@@ -17,6 +17,7 @@ class Task extends React.Component {
               <br />Name: {resource.name}
               <br />Quantity: {resource.quantity}
               <br />Deployed: {resource.deployed}
+              {console.log('resource', resource)}
             </div>
           ))}
         </div>

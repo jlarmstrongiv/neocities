@@ -49,7 +49,8 @@ export const authFetch = (auth) => {
         userId: data.userID,
         participantId: auth.participantId,
         roleId: data.roleID,
-        chatSession: data.chatSessions
+        chatSession: data.chatSessions,
+        sessionId: data.sessionID,
       };
 
 

@@ -1,0 +1,27 @@
+*{
+    font-family: Arial;
+}
+.container {
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto;
+    grid-template-areas: "sidebar main";
+    display: grid;
+}
+
+.page {
+    grid-area: main;
+    display: grid;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    display: grid;
+}
+
+.active{
+    font-weight: 150%;
+}
+
+.nav-link{
+    text-decoration: none;
+}

@@ -9,8 +9,8 @@ const NavItem = ({ path, exact, iconpath, title, }) => (
     exact={exact}
     children={({ match, }) => (
       <div>
-        {match ? 'active' : ''}
-        <Link to={path}>{title}</Link>
+        
+        <h4><Link className = {`${match ? 'active' : ''} nav-link`} to={path}>{title}</Link></h4>
       </div>
     )}
   />

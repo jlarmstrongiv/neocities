@@ -11,19 +11,9 @@ const createNeocitiesSocket = (/* url */) => {
         const auth = action.payload;
         rws = new ReconnectingWebSocket(`wss://${baseUrl}/ws/api/dynamic_data/${auth.token}/`);
         rws.onmessage = event => {
-          console.log(JSON.parse(event.data));
-          // dispatch({
-          //   type: `${actionTypes.PREFIXES_CHAT}_${actionTypes.ITEMS_ADD}`,
-          //   payload: {
-          //     itemId: ,
-          //     item: {
-          //       participant: {
-          //         name: ,
-          //       }
-          //       text: ,
-          //     }
-          //   }
-          // })
+          let response_payload = JSON.parse(JSON.parse(event.data).text);
+          console.log(response_payload);
+          dispatch(response_payload);
           dispatch(JSON.parse(event.data));
         };
         break;

@@ -18,7 +18,8 @@ const itemsDestroy = (state, action) => {
   };
 };
 const itemsAdd = (state, action) => {
-  const itemsOrder = immutableSplice(state.itemsOrder, action.payload.itemIndex, 0, [action.payload.item,]);
+  // TODO This will need to be fixed
+  const itemsOrder = [...state.itemsOrder, action.payload.itemId];
   return {
     ...state,
     items: {

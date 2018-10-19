@@ -6,10 +6,14 @@ import Nav from 'components/Nav/Nav';
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
+      <div className="App container">
         <BeforeUnload />
-        <Nav />
-        <SwitchPages />
+        <div className = "sidebar">
+          <Nav />
+        </div>
+        <div className = "page">
+          <SwitchPages />
+        </div>
       </div>
     );
   }

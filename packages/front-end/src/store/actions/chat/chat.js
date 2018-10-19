@@ -51,9 +51,8 @@ export const chatSend = (chat) => {
   return async (dispatch, getState) => {
     try {
       const { auth, } = getState();
-      console.log(chat)
       // eslint-disable-next-line no-unused-vars
-      const response = await axios.post(`/message/`, {
+      const response = await axios.post('/message/', {
         participant: auth.userId,
         text: chat.message,
         chat_session: auth.chatSession,

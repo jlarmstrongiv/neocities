@@ -53,18 +53,19 @@ export const resourcesMove = (resource) => {
   return async (dispatch, getState) => {
     try {
       const { auth, } = getState();
-      const timestamp = (Date.now() / 1000) | 0;
+      const timestamp = new Date().toISOString();
       // eslint-disable-next-line no-unused-vars
-      const response = await axios.post('/action', {
+      const response = await axios.post('/action/', {
         timestamp: timestamp,
         action_type: resource.movement, // actionTypes.RESOURCE_DEPLOY, actionTypes.RESOURCE_RECALL
-        session: auth.token,
+        session: auth.sessionId,
         participant: auth.userId,
         quantity: resource.quantity,
         resource: resource.resourceId,
         event: resource.eventId,
       });
     } catch (error) {
+      console.log(error);
       dispatch(resourcesIsError({ isError: error, }));
     }
   };

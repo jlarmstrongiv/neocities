@@ -30,6 +30,7 @@ class Chat extends React.Component {
     <div
       className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
       style={style}>
+      { console.log(this.props.chat) }
       <span>{ this.props.chat.items[this.props.chat.itemsOrder[index]].participant.name }</span>
       <span>: { this.props.chat.items[this.props.chat.itemsOrder[index]].text }</span>
     </div>
@@ -41,10 +42,10 @@ class Chat extends React.Component {
           Chat
             <List
               className="ChatBox"
-              height={150}
+              height={300}
               itemCount={this.props.chat.itemsOrder.length}
               itemSize={() => 20}
-              width={300}
+              width={600}
             >
               {this.Row}
             </List>

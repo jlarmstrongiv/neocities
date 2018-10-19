@@ -2,6 +2,8 @@ import React from 'react';
 import { connect, } from 'react-redux';
 import * as actionTypes from 'store/actions/actionTypes';
 import * as selectors from 'store/selectors';
+import * as actions from 'store/actions';
+
 
 class TaskPanel extends React.Component {
   state = {
@@ -22,6 +24,7 @@ class TaskPanel extends React.Component {
     ],
   }
   onResourceChange = event => {
+    console.log('target value: ', event.target.value);
     const selectedResourceId = 1 * event.target.value;
     const selectedResource = this.props.roleResources.find(roleResource => {
       return roleResource.id === this.state.selectedResource;
@@ -29,7 +32,6 @@ class TaskPanel extends React.Component {
     let quantity;
     if (selectedResource) {
       quantity = selectedResource.quantity;
-      console.log(quantity);
     }
     this.setState({
       selectedResource: selectedResourceId,
@@ -37,13 +39,18 @@ class TaskPanel extends React.Component {
     });
   }
   onResourceQuantityChange = event => {
-    this.setState({ selectedResourceQuantity: event.target.value, });
+    this.setState({ selectedResourceQuantity: event.target.value});
   }
   onMovementChange = event => {
     this.setState({ selectedMovement: event.target.value, });
   }
   onSubmit = event => {
-
+    this.props.resourceMove({
+      movement: this.state.selectedMovement,
+      quantity: this.state.selectedResourceQuantity,
+      resourceId: this.state.selectedResource,
+      eventId: this.state.selectedTask,
+    });
   }
   render() {
     return <div>
@@ -67,6 +74,7 @@ class TaskPanel extends React.Component {
         <select
           value={this.state.selectedResource}
           onChange={this.onResourceChange}>
+          <option value=""> </option>
           {this.props.roleResources.map(roleResource => (
             <option
               value={roleResource.id}
@@ -74,7 +82,6 @@ class TaskPanel extends React.Component {
               {roleResource.resource.name}
             </option>
           ))}
-          <option value=""></option>
         </select>
       </div>
       <div>
@@ -87,7 +94,7 @@ class TaskPanel extends React.Component {
           onChange={this.onResourceQuantityChange} />
         {/* // this.props.roleResources[this.state.selectedResource].quantity */}
       </div>
-      <button type="submit">{this.state.selectedMovement}</button>
+      <button onClick={this.onSubmit}  type="submit">{this.state.selectedMovement}</button>
     </div>;
   }
 }
@@ -99,8 +106,8 @@ const mapStateToProps = (state, ownProps) => {
     resourcesOrder: state.resources.itemsOrder,
   };
 };
-const mapDispatchToProps = (state, ownProps) => {
-  return {};
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return { resourceMove: (payload) => dispatch(actions.resourcesMove(payload)) };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TaskPanel);
 
