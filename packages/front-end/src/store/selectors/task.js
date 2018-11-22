@@ -17,7 +17,8 @@ export const taskRes = createCachedSelector(
   resourcesOrder,
   (res, resOrder, taskId, task, resources, resourcesOrder) => {
     const resTaskOrder = resOrder.filter(resId => {
-      return (res[resId].event.id === taskId) && (res[resId].quantity > 0);
+      // TODO Removed if quantity is greator than zero condition because quantity doesn't exist
+      return (res[resId].event.id === taskId);
     });
 
     const resTaskResourceIds = resTaskOrder.map(resId => {
@@ -36,6 +37,7 @@ export const taskRes = createCachedSelector(
         return totalDeployed + deployed;
       }, 0);
       const resource = resources[uniqueResourceId];
+
       const resResourceTask = updateObject(resource, {
         deployed: sameResourcesDeployedTotal,
         name: resource.resource.name,

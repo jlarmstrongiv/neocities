@@ -14,15 +14,8 @@ class Chat extends React.Component {
       ...this.state,
       message: event.target.value,
     });
-    if (event.key == "Enter") {
-      this.props.chatSend({"message": event.target.value.trim()})
-    }
-  }
-
-  onMessageSend = event => {
-    const message = this.state.message.trim();
-    if (message) {
-      // this.props.
+    if (event.key == 'Enter') {
+      this.props.chatSend({'message': event.target.value.trim()});
     }
   }
 
@@ -30,7 +23,6 @@ class Chat extends React.Component {
     <div
       className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
       style={style}>
-      { console.log(this.props.chat) }
       <span>{ this.props.chat.items[this.props.chat.itemsOrder[index]].participant.name }</span>
       <span>: { this.props.chat.items[this.props.chat.itemsOrder[index]].text }</span>
     </div>
@@ -39,17 +31,17 @@ class Chat extends React.Component {
   render() {
     return (
       <div>
-          Chat
-            <List
-              className="ChatBox"
-              height={300}
-              itemCount={this.props.chat.itemsOrder.length}
-              itemSize={() => 20}
-              width={600}
-            >
-              {this.Row}
-            </List>
-            <input id="chatInpt" placeholder={ "@" } onKeyPress={ this.onMessageChange.bind(this) }></input>
+        Chat
+        <List
+          className="ChatBox"
+          height={300}
+          itemCount={this.props.chat.itemsOrder.length}
+          itemSize={() => 20}
+          width={600}
+        >
+          {this.Row}
+        </List>
+        <input id="chatInpt" placeholder={ '@' } onKeyPress={ this.onMessageChange.bind(this) }></input>
       </div>
     );
   }

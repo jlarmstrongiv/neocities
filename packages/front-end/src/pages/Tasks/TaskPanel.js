@@ -2,6 +2,7 @@ import React from 'react';
 import { connect, } from 'react-redux';
 import * as actionTypes from 'store/actions/actionTypes';
 import * as selectors from 'store/selectors';
+import axios from 'axios/axios';
 import * as actions from 'store/actions';
 // import TaskPanelDeploy from 'pages/Tasks/TaskPanelDeploy';
 // import TaskPanelRecall from 'pages/Tasks/TaskPanelRecall';
@@ -24,10 +25,10 @@ class TaskPanel extends React.Component {
     ],
   };
   componentDidMount() {
-    if (!this.state.selectedTaskId) {
+    if (!this.state.selectedTaskId && this.props.tasks.itemsOrder[0]) {
       this.setState({ selectedTaskId: this.props.tasks.itemsOrder[0], });
     }
-    if (!this.state.selectedResourceId) {
+    if (!this.state.selectedResourceId && this.props.resourcesArray[0]) {
       this.setState({ selectedResourceId: this.props.resourcesArray[0].id, });
     }
   }
@@ -43,13 +44,15 @@ class TaskPanel extends React.Component {
   onQuantityChange = event => {
     this.setState({ selectedQuantity: 1 * event.target.value, });
   }
-  onMove = event => {
-    this.props.onMove({
+  onMove = async (event) => {
+    console.log('On Move is clicked');
+    const resource = {
       movement: this.state.movementSelected,
       quantity: this.state.selectedQuantity,
       resourceId: this.state.selectedResourceId,
       taskId: this.state.selectedTaskId,
-    });
+    };
+    this.props.onMoveResource(resource);
   }
   render() {
     return (
@@ -91,6 +94,7 @@ class TaskPanel extends React.Component {
           <select
             value={this.state.selectedResourceId}
             onChange={this.onResourceChange}>
+            <option key={100} value={""}></option>
             {this.props.resourcesArray.map(item => {
               return (
                 <option
@@ -124,14 +128,16 @@ class TaskPanel extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   return {
     tasks: state.tasks,
     resourcesArray: selectors.resourcesByRole(state, state.auth.roleId),
+    auth: state.auth,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return { onMove: payload => actions.resourcesMove(payload),  };
+  return { onMoveResource: (payload) => dispatch(actions.resourcesMove(payload)),  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskPanel);

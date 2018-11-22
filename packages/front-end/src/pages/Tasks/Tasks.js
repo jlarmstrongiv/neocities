@@ -10,16 +10,15 @@ class Tasks extends React.Component {
   }
   render() {
     return (
-      <div>
-        Tasks
-        <div>
+      <div className="task_container">
+        <div className="task_list">
           {this.props.tasksOrder.map(taskId => (
             <Task
               key={taskId}
               taskId={taskId} />
           ))}
         </div>
-        <div>
+        <div className="task_control">
           <TaskPanel />
         </div>
       </div>

@@ -52,6 +52,7 @@ export const resourcesIsError = itemActions.isErrorFor(actionTypes.PREFIXES_RESO
 export const resourcesMove = (resource) => {
   return async (dispatch, getState) => {
     try {
+      console.log('Sending Movement');
       const { auth, } = getState();
       const timestamp = new Date().toISOString();
       // eslint-disable-next-line no-unused-vars
@@ -62,7 +63,7 @@ export const resourcesMove = (resource) => {
         participant: auth.userId,
         quantity: resource.quantity,
         resource: resource.resourceId,
-        event: resource.eventId,
+        event: resource.taskId,
       });
     } catch (error) {
       console.log(error);

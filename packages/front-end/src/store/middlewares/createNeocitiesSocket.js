@@ -9,7 +9,7 @@ const createNeocitiesSocket = (/* url */) => {
       case actionTypes.SOCKET_CREATE:
         // eslint-disable-next-line no-case-declarations
         const auth = action.payload;
-        rws = new ReconnectingWebSocket(`wss://${baseUrl}/ws/api/dynamic_data/${auth.token}/`);
+        rws = new ReconnectingWebSocket(`ws://${baseUrl}/ws/api/dynamic_data/${auth.token}/`);
         rws.onmessage = event => {
           let response_payload = JSON.parse(JSON.parse(event.data).text);
           console.log(response_payload);
