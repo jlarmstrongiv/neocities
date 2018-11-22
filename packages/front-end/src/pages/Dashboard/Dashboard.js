@@ -32,22 +32,14 @@ class Dashboard extends React.Component {
        message: event.target.value,
      });
      if (event.key == 'Enter') {
-       this.props.chatSend({'message': event.target.value.trim()})
+       this.props.chatSend({'message': event.target.value.trim()});
      }
    }
-
-  onMessageSend = event => {
-    const message = this.state.message.trim();
-    if (message) {
-      // this.props.
-    }
-  }
 
   Row = ({ index, style, }) => (
     <div
       className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
       style={style}>
-      { console.log(this.props.chat) }
       <span>{ this.props.chat.items[this.props.chat.itemsOrder[index]].participant.name }</span>
       <span>: { this.props.chat.items[this.props.chat.itemsOrder[index]].text }</span>
     </div>
