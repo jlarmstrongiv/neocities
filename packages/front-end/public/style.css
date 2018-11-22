@@ -25,3 +25,35 @@
 .nav-link{
     text-decoration: none;
 }
+
+.task_container{
+    grid-template-columns: 60% 40%;
+    grid-template-rows: auto;
+    grid-template-areas: "task_list task_control";
+    display: grid;
+}
+
+.task_list{
+    grid-area: task_list;
+    display: grid;
+}
+
+.task_control{
+    grid-area: task_control;
+    display: grid;
+}
+
+.dashboard{
+    /* grid-template-columns: 50%  50%;
+    grid-template-rows: auto;
+    grid-template-areas: "main right_sidebar";
+    display: grid; */
+    display: flex;
+}
+.dashboard .main{
+    width: 50%;
+}
+
+.dashboard .right_sidebar{
+    width: 50%;
+}
